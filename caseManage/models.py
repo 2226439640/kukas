@@ -16,7 +16,8 @@ class TestCases(models):
     grade_choice = (('high', '高'),
                   ('middle', '中'),
                   ('low', '低'))
-    tag_choice = (('teacher', '教师端'), ('student', '学生端'))
+    tag_choice = (('teacher', '教师端'), ('student', '学生端'),('principal','校区运营系统'),
+                  ('question','题库'),('learn','学习系统'),('rest','其他'))
     caseid = models.AutoField(primary_key=True)
     caseName = models.CharField(verbose_name='用例名称')
     casePre = models.CharField(verbose_name='前置条件')
