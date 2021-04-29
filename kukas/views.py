@@ -19,7 +19,6 @@ def login(request):
 
 
 
-
 def logout(request):
 
     request.session.delete()
