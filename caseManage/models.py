@@ -142,7 +142,7 @@ class PrincipalCases(models.Model):
     class Meta():
         db_table = "principalcases"
 
-#文件表
+#文件表.
 class CaseFiles(models.Model):
     fid = models.AutoField(primary_key=True)
     filename = models.CharField(verbose_name='文件名',max_length=100)
