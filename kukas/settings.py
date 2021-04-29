@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -59,7 +59,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             #配置模版目录
-            os.path.join(BASE_DIR,'cases/template')
+            os.path.join(BASE_DIR, 'template'),
+            os.path.join(BASE_DIR, 'static').replace('\\', '/')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -84,14 +85,14 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',# 数据库引擎
-        'NAME': 'caseplatform',# 你要存储数据的库名，事先要创建之
-        'USER': 'root',# 数据库用户名
-        'PASSWORD': 'mql123',# 密码
-        'HOST': 'localhost',# 主机
-        'PORT': '3306', # 数据库使用的端口
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',# 数据库引擎
+    #     'NAME': 'caseplatform',# 你要存储数据的库名，事先要创建之
+    #     'USER': 'root',# 数据库用户名
+    #     'PASSWORD': 'mql123',# 密码
+    #     'HOST': 'localhost',# 主机
+    #     'PORT': '3306', # 数据库使用的端口
+    # }
 }
 
 
@@ -132,8 +133,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static').replace('\\', '/')
+STATICFILES_DIRS = (
+    ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
+    ('image', os.path.join(STATIC_ROOT, 'image').replace('\\', '/')),
+    ('fonts', os.path.join(STATIC_ROOT, 'fonts').replace('\\', '/')),
+    ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#session config
+SESSION_COOKIE_NAME = "sessionid"       #Session的cookie保存在浏览器上时的key
+SESSION_COOKIE_PATH = '/'               #Session的cookie保存的路径(默认)
+SESSION_COOKIE_DOMAIN = None            #Session的cookie保存的域名(默认)
+SESSION_COOKIE_SECURE = False           #是否Https传输cookie
+SESSION_COOKIE_HTTPONLY = True          #是否Session的cookie只支持http传输(默认)
+SESSION_COOKIE_AGE = 24*60*60           #Session的cookie失效日期(2周)(默认)
+SESSION_SAVE_EVERY_REQUEST = False      #是否设置关闭浏览器使得Session过期
+SESSION_COOKIE_AT_BROWSER_CLOSE = False #是否每次请求都保存Session，默认修改之后才能保存
