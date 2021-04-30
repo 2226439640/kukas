@@ -1,9 +1,9 @@
 from django.shortcuts import render, HttpResponse
 
 
-
 def getAllCases(request):
-    pass
+
+    return render(request, 'index.html')
 
 
 def insertCase(request):

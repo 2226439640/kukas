@@ -21,4 +21,5 @@ def login(request):
 
 def logout(request):
 
-    request.session.delete()
+    # request.session.delete()
+    render(request, 'login.html')
