@@ -31,6 +31,7 @@ class OtherCases(models.Model):
     tag = models.CharField(verbose_name='标签', max_length=100,choices=tag_choice)
     grade = models.CharField(verbose_name='等级',max_length=100, choices=grade_choice)
     update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
 
     "定义数据库名"
@@ -53,6 +54,7 @@ class TeacherCases(models.Model):
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
     update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
     class Meta():
@@ -74,6 +76,7 @@ class StudentCases(models.Model):
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
     update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
     class Meta():
@@ -95,6 +98,7 @@ class LearnCases(models.Model):
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
     update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
     class Meta():
@@ -116,6 +120,7 @@ class QuestioCases(models.Model):
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
     update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
     class Meta():
@@ -131,12 +136,13 @@ class PrincipalCases(models.Model):
     caseid = models.AutoField(primary_key=True)
     caseName = models.CharField(verbose_name='用例名称', max_length=100)
     casePre = models.CharField(verbose_name='前置条件', max_length=100)
-    caseStep = models.CharField(verbose_name='步骤', max_length=200)
+    caseStep = models.CharField(verbose_name='用例步骤', max_length=200)
     caseResult = models.CharField(verbose_name='预期结果', max_length=200)
     needid = models.IntegerField(verbose_name='需求id')
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
     update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
     class Meta():
