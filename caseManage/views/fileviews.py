@@ -3,7 +3,7 @@ from caseManage.updateFile import updateFile
 from tools.forms import FileForm
 from caseManage.models import Users,CaseFiles
 from django.http import HttpResponse, HttpResponseRedirect,FileResponse
-import datetime,os
+import datetime,os,pymysql,xlwt
 from django.contrib import messages
 from django.utils.http import urlquote
 from threading import Thread
@@ -86,12 +86,39 @@ def upload(request):
         return render(request, "upload.html", locals())
 
 
-def download(request):
+def download(table_name):  #tag,creatorname,update
     '''
     通过搜索 标签/用例名称/风险等级/创建人/时间 导出excel
     '''
+    # 连接数据库，查询数据
+    host, user, passwd, db = '127.0.0.1', 'root', 'mql123', 'tptcase'
+    conn = pymysql.connect(user=user, host=host, port=3306, passwd=passwd, db=db, charset='utf8')
+    cur = conn.cursor()
+    sql = 'select * from %s' % table_name
+    cur.execute(sql)  # 返回受影响的行数
 
-    pass
+    fields = [field[0] for field in cur.description]  # 获取所有字段名
+    all_data = cur.fetchall()  # 所有数据
+
+    # 写入excel
+    book = xlwt.Workbook()
+    sheet = book.add_sheet('sheet1')
+
+    for col, field in enumerate(fields):
+        sheet.write(0, col, field)
+
+    row = 1
+    for data in all_data:
+        for col, field in enumerate(data):
+            sheet.write(row, col, field)
+        row += 1
+    book.save("caseManage/upload/%s.xls" % table_name)
+
+
+if __name__ == '__main__':
+    t1 = Thread(target=download, args=('users',))
+    t1.start()
+    # download('users')
 
 
 
