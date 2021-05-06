@@ -10,6 +10,7 @@ class Users(models.Model):
     phone = models.CharField(verbose_name='手机', max_length=20, null=True)
     email = models.CharField(verbose_name='邮箱', max_length=64, null=True)
     limit = models.BooleanField(verbose_name='权限')
+    isadmin = models.BooleanField(verbose_name='管理员')
 
     "定义数据库名"
     class Meta():
@@ -30,7 +31,7 @@ class OtherCases(models.Model):
     needid = models.IntegerField(verbose_name='需求id')
     tag = models.CharField(verbose_name='标签', max_length=100,choices=tag_choice)
     grade = models.CharField(verbose_name='等级',max_length=100, choices=grade_choice)
-    update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    endupdate = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
     creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
 
@@ -53,7 +54,7 @@ class TeacherCases(models.Model):
     needid = models.IntegerField(verbose_name='需求id')
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
-    update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    endupdate= models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
     creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
@@ -75,7 +76,7 @@ class StudentCases(models.Model):
     needid = models.IntegerField(verbose_name='需求id')
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
-    update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    endupdate = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
     creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
@@ -97,7 +98,7 @@ class LearnCases(models.Model):
     needid = models.IntegerField(verbose_name='需求id')
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
-    update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    endupdate = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
     creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
@@ -119,7 +120,7 @@ class QuestioCases(models.Model):
     needid = models.IntegerField(verbose_name='需求id')
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
-    update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    endupdate = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
     creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
@@ -141,7 +142,7 @@ class PrincipalCases(models.Model):
     needid = models.IntegerField(verbose_name='需求id')
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
-    update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    endupdate = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
     creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
@@ -153,8 +154,9 @@ class CaseFiles(models.Model):
     fid = models.AutoField(primary_key=True)
     filename = models.CharField(verbose_name='文件名',max_length=100)
     filepath = models.CharField(verbose_name='文件路径',max_length=200)
-    update = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    endupdate = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
+
     "定义数据库名"
     class Meta():
         db_table = "casefiles"
