@@ -3,7 +3,7 @@ from caseManage.updateFile import updateFile
 from tools.forms import FileForm
 from caseManage.models import Users,CaseFiles
 from django.http import HttpResponse, HttpResponseRedirect,FileResponse
-import datetime,os,pymysql,xlwt
+import datetime,os,pymysql
 from django.contrib import messages
 from django.utils.http import urlquote
 from threading import Thread
