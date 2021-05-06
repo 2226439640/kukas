@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>测试用例管理系统</title>
-    <base href="/">
-    <link href="./static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
 
     <style>
         html,body {
@@ -108,7 +107,7 @@
         </div>
         <div class="login-content ">
             <div class="form">
-                <form action="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/login.html#" method="post">
+                <form action="{% url 'login'%}" method="post">
                     <div class="form-group">
                         <div class="col-xs-12  ">
                             <div class="input-group">
@@ -127,7 +126,8 @@
                     </div>
                     <div class="form-group form-actions">
                         <div class="col-xs-4 col-xs-offset-4 " style="margin: 0 37%;">
-                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-off"></span> 登录</a>
+                            <input type="submit" value="Submit" class="btn btn-sm btn-info">
+<!--<a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-off"></span> 登录</a>-->
                         </div>
                     </div>
                     <!--div class="form-group">
@@ -148,7 +148,7 @@
 
 
 <script src="/static/js/jquery-1.11.3.js"></script>
-<script src="./static/js/bootstrap.js"></script>
+<script src="/static/js/bootstrap.js"></script>
 <script>
     /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测
     (function () {
