@@ -20,6 +20,6 @@ from kukas import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login, name='login'),
-    path('logout/', views.logout),
+    path('logout/', views.logout, name='logout'),
     path('case/',include('caseManage.urls'))
 ]

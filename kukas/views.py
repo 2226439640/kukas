@@ -18,8 +18,6 @@ def login(request):
         return render(request, 'login.html')
 
 
-
 def logout(request):
-
-    # request.session.delete()
-    render(request, 'login.html')
+    request.session.flush()
+    return render(request, 'login.html')
