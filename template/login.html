@@ -150,6 +150,9 @@
 <script src="/static/js/jquery-1.11.3.js"></script>
 <script src="/static/js/bootstrap.js"></script>
 <script>
+    {% if msg %}
+    alert('{{ msg }}')
+    {% endif %}
     /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测
     (function () {
         var s = document.createElement("script");

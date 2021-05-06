@@ -1,271 +1,146 @@
 <!DOCTYPE html>
-<!-- saved from url=(0063)http://demo.kangjingept.com:8020/cssthemes6/11.13ZF2/index.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		
-		<title>@ViewBag.Title</title>
-		<link href="./index_files/Site.css" rel="stylesheet" type="text/css">
-		<link href="./index_files/zy.layout.css" rel="stylesheet">
-		<link href="./index_files/zy.form.css" rel="stylesheet">
-		<link href="./index_files/font-awesome.min.css" rel="stylesheet">
-		<style type="text/css">
-			.headerlitooleulsubitem_gray {
-				background-Color: White;
-				position: absolute;
-				border-left: 1px solid #BCD4E5;
-				border-right: 1px solid #BCD4E5;
-				border-bottom: 1px solid #BCD4E5;
-				box-shadow: 0px 0px 5px #BCD4E5;
-				width: 230px;
-				margin-left: -170px;
-				color: Black;
-				display: none;
-			}
-			
-			.headerlitooleulsubitem_red {
-				background-Color: White;
-				position: absolute;
-				border-left: 1px solid #E5BCD4;
-				border-right: 1px solid #E5BCD4;
-				border-bottom: 1px solid #E5BCD4;
-				box-shadow: 0px 0px 5px #E5BCD4;
-				width: 230px;
-				margin-left: -170px;
-				color: Black;
-				display: none;
-			}
-			
-			.headerlitooleulsubitem_gray>li,
-			.headerlitooleulsubitem_red>li {
-				height: 45px;
-				background-color: White;
-				padding: 0px 10px;
-				border-bottom: 1px solid #E4ECF3;
-				font-size: 14px;
-				line-height: 26px;
-			}
-			
-			.headerlitoolelisubitemtitle_gray {
-				height: 35px !important;
-				line-height: 35px !important;
-				background-color: #ECF2F7 !important;
-				margin: 0px !important;
-				color: #8090A0 !important;
-				font-size: 14px;
-				font-weight: bold;
-				border-bottom: 1px solid #BCD4E5 !important;
-			}
-			
-			.headerlitoolelisubitemtitle_red {
-				height: 35px !important;
-				line-height: 35px !important;
-				background-color: #F7ECF2 !important;
-				margin: 0px !important;
-				color: #B471A0 !important;
-				font-size: 14px;
-				font-weight: bold;
-				border-bottom: 1px solid #E5BCD4 !important;
-			}
-			
-			.headerlitooleulsubitem_gray>li:hover {
-				background-Color: #F4F9FC;
-			}
-			
-			.headerlitooleulsubitem_red>li:hover {
-				background-color: #FCF4F9;
-			}
-			
-			.ulsubitemitems>li {
-				float: left;
-				height: 20px;
-				font-size: 13px;
-				font-weight: normal !important;
-				color: #555 !important;
-			}
-			
-			.ulsubitemitems>li:last-child {
-				clear: both;
-				width: 100%;
-				height: 10px;
-				margin-top: 8px;
-				background-color: #DADADA;
-			}
-			
-			.headerlitools_info {
-				background-color: #0a318d;
-				height: 45px;
-				padding: 0px 10px;
-				width: 135px;
-			}
-			
-			.headeruserface {
-				background-image: url('/content/resources/images/logo.png');
-				width: 40px;
-				height: 40px;
-				background-color: white;
-				margin: 2px 10px 2px 2px;
-				border-radius: 20px;
-				float: left;
-			}
-			
-			.headerlitools_ulinfo {
-				background-Color: white;
-				border-left: 1px solid #D1D1D1;
-				border-right: 1px solid #D1D1D1;
-				border-bottom: 1px solid #D1D1D1;
-				box-shadow: 0px 0px 5px #D1D1D1;
-				width: 160px;
-				margin-left: -20px;
-				color: Black;
-				display: none;
-			}
-			
-			.headerlitools_ulinfo>li {
-				height: 35px;
-				background-color: White;
-				padding: 0px 10px;
-				font-size: 14px;
-				line-height: 36px;
-			}
-			
-			.headerlitools_ulinfo>li:hover {
-				background-Color: #FEE188;
-			}
-			
-			.dvcontent {
-				padding: 0px 20px;
-				margin: 45px auto 0px auto;
-				overflow: auto;
-			}
-			
-			.dvpagerecord {
-				padding: 6px 12px;
-				background-color: #EAEFF2;
-				color: #2283C5;
-				float: left;
-				border: 1px solid #D9D9D9;
-				text-decoration: underline;
-				font-size: 14px;
-				cursor: pointer;
-			}
-			
-			.dvpagerecord:hover {
-				cursor: pointer;
-			}
-			
-			.dvpagerecord:hover i {
-				text-decoration: underline;
-			}
-			
-			.ulpageRecord {
-				max-width: 165px;
-				float: left;
-				white-space: nowrap;
-				overflow: hidden;
-				margin: 0px;
-				padding: 0px;
-			}
-			
-			.ulpageRecord li {
-				margin: 0px;
-				padding: 6px 12px;
-				background-color: #EAEFF2;
-				color: #2283C5;
-				display: inline-block;
-				font-size: 14px;
-				border: 1px solid #D9D9D9;
-			}
-			
-			.ulpageRecord li:hover {
-				text-decoration: underline;
-				cursor: pointer;
-			}
-			
-			.currentPage {
-				background-color: #2468a9 !important;
-				color: white !important;
-			}
-			
-			#warn {
-				width: 300px;
-			}
-			
-			#warn tr {
-				width: 300px;
-				height: 20px;
-			}
-			
-			#warn tr td {
-				width: 90px;
-				height: 20px;
-				text-align: center;
-			}
-			
-			iframe {
-				border: none;
-			}
-		</style>
-		<link href="./index_files/zy.menu.css" rel="stylesheet">
-	</head>
+<!-- saved from url=(0063)http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="author" content="order by dede58.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/img/logo.png">
+    <title>物资管理调度系统</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/mmss.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <style>
 
-	<body>
-		<div class="dvheader">
-			<div class="dvheadertools">
-				<span class="headerspantitle">测试用例管理系统</span>
-				<ul class="headerultools">
+    </style>
+</head>
+<body>
+<header>
+    <div class="container-fluid navbar-fixed-top bg-primary">
+        <ul class="nav navbar-nav  left">
+            <li class="text-white h4">
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-leaf"></span>&nbsp;&nbsp;<b>测试用例管理系统</b>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav nav-pills right ">
+            <li class="bg-warning ">
+                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><span class="glyphicon glyphicon-tasks"></span><span class="badge">1</span></a>
+            </li>
+            <li class="bg-success">
+                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><span class="glyphicon glyphicon-envelope"></span><span class="badge">2</span></a>
+            </li>
+            <li class="bg-danger">
+                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><span class="glyphicon glyphicon-bell"></span></a>
+            </li>
+            <li class="bg-info dropdown">
+                <a class="dropdown-toggle" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user"></span>&nbsp;<span>用户信息</span><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="text-center"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><span class="text-primary">账号设置</span></a></li>
+                    <li class="text-center"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><span class="text-primary">消息设置</span></a></li>
+                    <li class="text-center"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><span class="text-primary">帮助中心</span></a></li>
+                    <li class="divider"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"></a></li>
+                    <li class="text-center"><a href="{% url 'logout' %}"><span class="text-primary">退出</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
 
-					<li class="headerlitools_info headerlitools" style="background-color: #075597">
-						<div class="headeruserface" style="text-align: center;"><i class="icon-user" style="color: black;font-size: 19px;"></i></div>
-						管理员<i style="margin-left: 8px;" class="icon-caret-down"></i>
-						<ul class="headerlitools_ulinfo">
+<section>
+    <div class="container-fluid">
+        <div class="row ">
+            <!--左侧导航开始-->
+            <div class="col-xs-2 bg-blue">
+                <br>
+                <div class="panel-group sidebar-menu" id="accordion" aria-multiselectable="true">
+                    <div class="panel panel-default menu-first menu-first-active">
+                        <a data-toggle="collapse" data-parent="#accordion" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="icon-home icon-large"></i> 主页
+                        </a>
+                    </div>
+                    <div class="panel panel-default menu-first">
+                        <a data-toggle="collapse" data-parent="#accordion" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="icon-user-md icon-large"></i> 用例管理</a>
+                        
 
-							<li style="border-top: 1px solid #E4ECF3;">
-								<i class="icon-off" style="margin-right: 10px;"></i>
-								<a style="color: black; text-decoration: none;">退出</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="dvcontent">
+                        <div id="collapseOne" class="panel-collapse collapse ">
+                            <ul class="nav nav-list menu-second">
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html"><i class="icon-user"></i> 学生端</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p2.html"><i class="icon-edit"></i> 教师端</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p3.html"><i class="icon-trash"></i> p3</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><i class="icon-list"></i> 子选项4</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel panel-default menu-first">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="icon-book icon-large"></i> 文件管理</a>
+                        
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <ul class="nav nav-list menu-second">
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><i class="icon-user"></i> 子选项1</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><i class="icon-edit"></i> 子选项2</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><i class="icon-trash"></i> 子选项3</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><i class="icon-list"></i> 子选项4</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel panel-default menu-first">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <i class="icon-book icon-large"></i> 用户管理</a>
+                        
 
-			<ul class="ulleftmenu" style="border-right: 1px solid #ddd;">
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <ul class="nav nav-list menu-second">
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><i class="icon-user"></i> 子选项1</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><i class="icon-edit"></i> 子选项2</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><i class="icon-trash"></i> 子选项3</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html#"><i class="icon-list"></i> 子选项4</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--左侧导航结束-->
+            <!----------------------------------------------------------------------------------------------------->
+            <!--右侧内容开始-->
+            <div class="col-xs-10">
+                <br>
+                <ol class="breadcrumb">
+                    <li class="active"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</li>
+                </ol>
+                <h1 class="text-center text-white">测试用例管理系统</h1>
+                <!----------------------------------------------------------    ------------------------------------------->
+            </div>
+            <!--右侧内容结束-->
+        </div>
+    </div>
+</section>
 
-				<li class="limenuitem">
-					<i class="icon-cog menuicon"></i>系统菜单<b class="arrow icon-angle-down arrow-down"></b>
-					<ul class="ulleftsubitems">
-						<a href="http://demo.kangjingept.com:8020/cssthemes6/11.13ZF2/type.html" target="right">
-							<li>分类管理</li>
-						</a>
-						<a href="http://demo.kangjingept.com:8020/cssthemes6/11.13ZF2/inventory.html" target="right">
-							<li>库存管理</li>
-						</a>
-						<a href="http://demo.kangjingept.com:8020/cssthemes6/11.13ZF2/inbound.html" target="right">
-							<li>入库管理</li>
-						</a>
-						<a href="http://demo.kangjingept.com:8020/cssthemes6/11.13ZF2/warning.html" target="right">
-							<li>预警信息设置</li>
-						</a>
-						<a href="http://demo.kangjingept.com:8020/cssthemes6/11.13ZF2/outBoud.html" target="right">
-							<li>出库管理</li>
-						</a>
-						<a href="http://demo.kangjingept.com:8020/cssthemes6/11.13ZF2/user.html" target="right">
-							<li>用户管理</li>
-						</a>
-						<a href="http://demo.kangjingept.com:8020/cssthemes6/11.13ZF2/updatePwd.html" target="right"><li>修改密码</li></a>
-					</ul>
-				</li>
-			</ul>
-			<div style="position: absolute; left: 191px; right: 20px; ">
-				<iframe src="./index_files/type.html" scrolling="no" width="100%" height="1200" name="right" border="none"></iframe>
-			</div>
-		</div>
-		<script src="./index_files/jquery-1.7.2.min.js.下载" type="text/javascript"></script>
-		<script src="./index_files/Jqueryplugs.js.下载" type="text/javascript"></script>
-		<script src="./index_files/_layout.js.下载"></script>
+<footer class="bg-primary navbar-fixed-bottom">
+    <p class="text-center text-white">版权所有©lxp</p>
+</footer>
 
-		
+<script src="/static/js/jquery-1.11.3.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+<script>
+    /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测*/
+    (function () {
+        var s = document.createElement("script");
+        s.onload = function () {
+            bootlint.showLintReportForCurrentDocument([]);
+        };
+        s.src = "js/bootlint.js";
+        document.body.appendChild(s)
+    })();
 
-	
+    $(function () {
+        $('dt').click(function () {
+            $(this).parent().find('dd').show().end().siblings().find('dd').hide();
+        });
+    });
+</script><script src="/static/js/bootlint.js"></script>
 
 </body></html>
