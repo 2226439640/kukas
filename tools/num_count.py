@@ -1,6 +1,6 @@
 #处理文件中的数据并进行入库
 import json,xlrd,pymysql
-from caseManage.models import PrincipalCases
+# from caseManage.models import PrincipalCases
 import os
 '根据文件'
 
@@ -51,12 +51,13 @@ def parse(file_path):
         dict['tag'] = "".join(row[5].split()) #标签
         dict['grade'] = "".join(row[6].split()) #等级
         dict['update'] = "".join(row[7].split()) #最后更新时间
-        dict['user'] = "".join(row[8].split()) #用户名
-        for j in range(0,report_num):
-            if row[j] is not '': #如果行内没有数据，则对应报表名称无权限，设为0，否则为1
-                dict[report_name[j]] = 1
-            else:
-                dict[report_name[j]] = 0
+        dict['creator'] = "".join(row[8].split()) #创建者
+        dict['user_id'] = "".join(row[9].split()) #用户名
+        # for j in range(0,report_num):
+        #     if row[j] is not '': #如果行内没有数据，则对应报表名称无权限，设为0，否则为1
+        #         dict[report_name[j]] = 1
+        #     else:
+        #         dict[report_name[j]] = 0
         print(dict)
         return dict
         # _result_list = json.dumps(dict)
@@ -107,9 +108,9 @@ if __name__ == '__main__':
     f = open('portal.txt','w',encoding='utf-8')
     #print(file_list)
     for file_name in file_list:
-        print('start translating',file_name)
+        # print('start translating',file_name)
         parse(file_name)
-        print('translate complete',file_name)
+        # print('translate complete',file_name)
     f.close()
 
 

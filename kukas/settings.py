@@ -87,10 +87,10 @@ DATABASES = {
     # },
     'default': {
         'ENGINE': 'django.db.backends.mysql',# 数据库引擎
-        'NAME': 'ptcase',# 你要存储数据的库名，事先要创建之
+        'NAME': 'ptcases',# 你要存储数据的库名，事先要创建之
         'USER': 'root',# 数据库用户名
         'PASSWORD': 'mql123',# 密码
-        'HOST': '172.16.2.240',# 主机
+        'HOST': '127.0.0.1',# 主机
         'PORT': '3306',# 数据库使用的端口
     }
 }
