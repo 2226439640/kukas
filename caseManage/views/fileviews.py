@@ -12,7 +12,7 @@ import _thread as thread
 
 #TODO
 def getAllFiles(request):
-    pass
+    return render(request, 'file.html')
 
 def upload1(request,class_id):
     # 判断是否有session

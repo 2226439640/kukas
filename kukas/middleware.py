@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 
 class loginMiddleware(MiddlewareMixin):
+
     def process_request(self, request):
-        if not request.session['username']:
-            return render(request, 'login/')
+        if 'login' not in request.path_info and not request.session.get('username'):
+            return render(request, 'login.html')
