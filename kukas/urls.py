@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
-    path('case/',include('caseManage.urls'))
+    path('case/', include('caseManage.urls')),
+    path('file/', include('caseManage.urls')),
 ]

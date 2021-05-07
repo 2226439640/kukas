@@ -7,13 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/img/logo.png">
     <title>物资管理调度系统</title>
-    <link href="./file_files/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="./file_files/mmss.css">
-    <link rel="stylesheet" href="./file_files/font-awesome.min.css">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/mmss.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
     <style>
 
     </style>
@@ -129,10 +125,12 @@
                 </select>
                 <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
                 <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
-                <form method="post" enctype="multipart/form-data">
-                    <input type="file" value="选择文件" name="myfile" class="glyphicon glyphicon-file">
-                    <input type="submit" value="确定上传" name="upload" class="glyphicon glyphicon-upload">
-                </form>
+                <div  class="input-group line right">
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="file" name="myfile"  class="form-control">
+                        <input type="submit" value="确定上传" name="upload" class="glyphicon glyphicon-upload">
+                    </form>
+                </div>>
                 <br><br>
                 <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
                             <div class="modal-dialog" role="document">
@@ -376,11 +374,11 @@
 </section>
 
 <footer class="bg-primary navbar-fixed-bottom">
-    <p class="text-center text-white">版权所有©MMSS</p>
+    <p class="text-center text-white">版权所有©lxp</p>
 </footer>
 
-<script src="./file_files/jquery-1.11.3.js.下载"></script>
-<script src="./file_files/bootstrap.js.下载"></script>
+<script src="static/js/jquery-1.11.3.js"></script>
+<script src="static/js/bootstrap.js"></script>
 <script>
     /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测*/
     (function () {
