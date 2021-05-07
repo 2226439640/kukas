@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0060)http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html -->
 <html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+
     <meta name="author" content="order by dede58.com">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,14 +56,14 @@
                 <br>
                 <div class="panel-group sidebar-menu" id="accordion" aria-multiselectable="true">
                     <div class="panel panel-default menu-first menu-first-active">
-                        <a data-toggle="collapse" data-parent="#accordion" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/index.html" aria-expanded="true" aria-controls="collapseOne">
+                        <a data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true" aria-controls="collapseOne">
                             <i class="icon-home icon-large"></i> 主页
                         </a>
                     </div>
                     <div class="panel panel-default menu-first">
-                        <a data-toggle="collapse" data-parent="#accordion" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <a data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true" aria-controls="collapseOne">
                             <i class="icon-user-md icon-large"></i> 用例管理</a>
-                        
+
 
                         <div id="collapseOne" class="panel-collapse collapse in">
                             <ul class="nav nav-list menu-second">
@@ -79,7 +79,7 @@
                     <div class="panel panel-default menu-first">
                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             <i class="icon-book icon-large"></i> 用户管理</a>
-                        
+
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <ul class="nav nav-list menu-second">
                                 <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><i class="icon-user"></i> 子选项1</a></li>
@@ -92,14 +92,14 @@
                     <div class="panel panel-default menu-first">
                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             <i class="icon-book icon-large"></i> 其他管理</a>
-                        
+
 
                         <div id="collapseThree" class="panel-collapse collapse">
                             <ul class="nav nav-list menu-second">
-                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><i class="icon-user"></i> 子选项1</a></li>
-                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><i class="icon-edit"></i> 子选项2</a></li>
-                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><i class="icon-trash"></i> 子选项3</a></li>
-                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><i class="icon-list"></i> 子选项4</a></li>
+                                <li><a href=""><i class="icon-user"></i> 子选项1</a></li>
+                                <li><a href=""><i class="icon-edit"></i> 子选项2</a></li>
+                                <li><a href=""><i class="icon-trash"></i> 子选项3</a></li>
+                                <li><a href=""><i class="icon-list"></i> 子选项4</a></li>
                             </ul>
                         </div>
                     </div>
@@ -256,10 +256,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for student in students %}
+                    {% for learn in learns %}
                         <tr>
-                            <td>{{student.pk}}</td>
-                            {% for s in student.fields.values %}
+                            <td>{{learn.pk}}</td>
+                            {% for s in learn.fields.values %}
                                 <td>{{s}}</td>
                             {% endfor %}
                         <td>
@@ -272,13 +272,13 @@
                     </tbody>
                 </table>
                 <ul class="pagination right">
-                    <li><a href="http://127.0.0.1:8000/case/students/{{ pageNow|add:-1 }}/" aria-label="Previous"><span aria-hidden="true">«</span></a>
+                    <li><a href="http://127.0.0.1:8000/case/learns/{{ pageNow|add:-1 }}/" aria-label="Previous"><span aria-hidden="true">«</span></a>
                     </li>
                     {% for page in pageNums %}
                         {% if pageNow == page %}
-                            <li class="active"><a href="http://127.0.0.1:8000/case/students/{{ page }}/">{{page}}<span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="http://127.0.0.1:8000/case/learns/{{ page }}/">{{page}}<span class="sr-only">(current)</span></a></li>
                         {% else %}
-                            <li><a href="http://127.0.0.1:8000/case/students/{{ page }}/">{{ page }}</a></li>
+                            <li><a href="http://127.0.0.1:8000/case/learns/{{ page }}/">{{ page }}</a></li>
                         {% endif %}
                     {% endfor %}
 
@@ -286,7 +286,7 @@
 <!--                    <li><a href="http://127.0.0.1:8000/case/students/3/">3</a></li>-->
 <!--                    <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#">4</a></li>-->
 <!--                    <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#">5</a></li>-->
-                    <li><a href="http://127.0.0.1:8000/case/students/{{ pageNow|add:1 }}/" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    <li><a href="http://127.0.0.1:8000/case/learns/{{ pageNow|add:1 }}/" aria-label="Next"><span aria-hidden="true">»</span></a></li>
                 </ul>
             </div>
             <!--右侧内容结束-->

@@ -30,3 +30,86 @@ def students(request, page):
     res = json.loads(res)
     return render(request, 'student.html', {"students": res, "pageNums": range(1, paginator.num_pages+1), "pageNow": int(page)})
 
+def teachers(request, page):
+    queryset = TeacherCases.objects.all()
+    paginator = Paginator(queryset, 10)
+    try:
+        teacher = paginator.page(page)
+    except PageNotAnInteger:
+        teacher = paginator.page(1)
+    except InvalidPage:
+        return HttpResponse('找不到页面的内容')
+    except EmptyPage:
+        teacher = paginator.page(paginator.num_pages)
+
+    res = serializers.serialize('json', teacher)
+    res = json.loads(res)
+    return render(request, 'teacher.html', {"teachers": res, "pageNums": range(1, paginator.num_pages+1), "pageNow": int(page)})
+
+
+def learns(request, page):
+    queryset = LearnCases.objects.all()
+    paginator = Paginator(queryset, 10)
+    try:
+        learn = paginator.page(page)
+    except PageNotAnInteger:
+        learn = paginator.page(1)
+    except InvalidPage:
+        return HttpResponse('找不到页面的内容')
+    except EmptyPage:
+        learn = paginator.page(paginator.num_pages)
+
+    res = serializers.serialize('json', learn)
+    res = json.loads(res)
+    return render(request, 'learn.html', {"learns": res, "pageNums": range(1, paginator.num_pages+1), "pageNow": int(page)})
+
+
+def questions(request, page):
+    queryset = QuestioCases.objects.all()
+    paginator = Paginator(queryset, 10)
+    try:
+        question = paginator.page(page)
+    except PageNotAnInteger:
+        question = paginator.page(1)
+    except InvalidPage:
+        return HttpResponse('找不到页面的内容')
+    except EmptyPage:
+        question = paginator.page(paginator.num_pages)
+
+    res = serializers.serialize('json', question)
+    res = json.loads(res)
+    return render(request, 'question.html', {"questions": res, "pageNums": range(1, paginator.num_pages+1), "pageNow": int(page)})
+
+
+def princpals(request, page):
+    queryset = PrincipalCases.objects.all()
+    paginator = Paginator(queryset, 10)
+    try:
+        princpal = paginator.page(page)
+    except PageNotAnInteger:
+        princpal = paginator.page(1)
+    except InvalidPage:
+        return HttpResponse('找不到页面的内容')
+    except EmptyPage:
+        princpal = paginator.page(paginator.num_pages)
+
+    res = serializers.serialize('json', princpal)
+    res = json.loads(res)
+    return render(request, 'princpal.html', {"princpals": res, "pageNums": range(1, paginator.num_pages+1), "pageNow": int(page)})
+
+
+def others(request, page):
+    queryset = OtherCases.objects.all()
+    paginator = Paginator(queryset, 10)
+    try:
+        other = paginator.page(page)
+    except PageNotAnInteger:
+        other = paginator.page(1)
+    except InvalidPage:
+        return HttpResponse('找不到页面的内容')
+    except EmptyPage:
+        other = paginator.page(paginator.num_pages)
+
+    res = serializers.serialize('json', other)
+    res = json.loads(res)
+    return render(request, 'other.html', {"others": res, "pageNums": range(1, paginator.num_pages+1), "pageNow": int(page)})
