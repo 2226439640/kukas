@@ -30,6 +30,7 @@ def students(request, page):
     res = json.loads(res)
     return render(request, 'student.html', {"students": res, "pageNums": range(1, paginator.num_pages+1), "pageNow": int(page)})
 
+
 def teachers(request, page):
     queryset = TeacherCases.objects.all()
     paginator = Paginator(queryset, 10)
@@ -113,3 +114,10 @@ def others(request, page):
     res = serializers.serialize('json', other)
     res = json.loads(res)
     return render(request, 'other.html', {"others": res, "pageNums": range(1, paginator.num_pages+1), "pageNow": int(page)})
+
+
+def uploadCase(request):
+    #TODO
+    data = json.loads(request.body.decode("utf-8"))
+    print(data)
+    return render(request, 'student.html')
