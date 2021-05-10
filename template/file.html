@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/img/logo.png">
-    <title>测试用例管理系统</title>
+    <title>物资管理调度系统</title>
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/mmss.css">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
@@ -19,10 +19,19 @@
     <div class="container-fluid navbar-fixed-top bg-primary">
         <ul class="nav navbar-nav  left">
             <li class="text-white h4">
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-leaf"></span>&nbsp;&nbsp;<b>测试用例管理系统</b>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-leaf"></span>&nbsp;&nbsp;<b>物资管理调度系统</b>
             </li>
         </ul>
         <ul class="nav navbar-nav nav-pills right ">
+            <li class="bg-warning ">
+                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><span class="glyphicon glyphicon-tasks"></span><span class="badge">1</span></a>
+            </li>
+            <li class="bg-success">
+                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><span class="glyphicon glyphicon-envelope"></span><span class="badge">2</span></a>
+            </li>
+            <li class="bg-danger">
+                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><span class="glyphicon glyphicon-bell"></span></a>
+            </li>
             <li class="bg-info dropdown">
                 <a class="dropdown-toggle" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user"></span>&nbsp;<span>系统管理员</span><span class="caret"></span>
@@ -67,11 +76,14 @@
                     </div>
                     <div class="panel panel-default menu-first">
                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <i class="icon-book icon-large"></i> 文件管理</a>
+                            <i class="icon-book icon-large"></i> 用户管理</a>
                         
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <ul class="nav nav-list menu-second">
-                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><i class="icon-user"></i> 文件</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><i class="icon-user"></i> 子选项1</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><i class="icon-edit"></i> 子选项2</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><i class="icon-trash"></i> 子选项3</a></li>
+                                <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><i class="icon-list"></i> 子选项4</a></li>
                             </ul>
                         </div>
                     </div>
@@ -104,10 +116,6 @@
                     <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
                     <input type="text" class="form-control" placeholder="输入关键字搜索" aria-describedby="basic-addon2">
                 </div>
-                <form method="post" enctype="multipart/form-data" action="/file/upload/">
-                    <input id="lefile" type="file" class="input-group-addon line right" name="file">
-                    <button type="submit" class="btn btn-primary line right">确定上传</button>
-                </form>
                 <select class="form-control line left">
                     <option>1</option>
                     <option>2</option>
@@ -117,6 +125,12 @@
                 </select>
                 <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
                 <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
+                <div  class="input-group line right">
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="file" name="myfile"  class="form-control">
+                        <input type="submit" value="确定上传" name="upload" class="glyphicon glyphicon-upload">
+                    </form>
+                </div>>
                 <br><br>
                 <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
                             <div class="modal-dialog" role="document">
@@ -132,15 +146,31 @@
                                                 <input type="text">
                                             </li>
                                             <li>
-                                                <label><span>文件名 ：</span></label>
+                                                <label><span>用户名 ：</span></label>
                                                 <input type="text">
                                             </li>
                                             <li>
-                                                <label><span>更新时间 ：</span></label>
+                                                <label><span>姓名 ：</span></label>
                                                 <input type="text">
                                             </li>
                                             <li>
-                                                <label><span>更新用户 ：</span></label>
+                                                <label><span>性别 ：</span></label>
+                                                <input type="text">
+                                            </li>
+                                            <li>
+                                                <label><span>身份证 ：</span></label>
+                                                <input type="text">
+                                            </li>
+                                            <li>
+                                                <label><span>职位 ：</span></label>
+                                                <input type="text">
+                                            </li>
+                                            <li>
+                                                <label><span>邮箱 ：</span></label>
+                                                <input type="text">
+                                            </li>
+                                            <li>
+                                                <label><span>备注 ：</span></label>
                                                 <input type="text">
                                             </li>
                                         </ul>
@@ -204,36 +234,138 @@
                     <thead>
                     <tr class="info">
                         <th class="text-center">序号</th>
-                        <th class="text-center">文件名</th>
-                        <th class="text-center">更新时间</th>
-                        <th class="text-center">更新用户</th>
+                        <th class="text-center">用户名</th>
+                        <th class="text-center">姓名</th>
+                        <th class="text-center">性别</th>
+                        <th class="text-center">身份证</th>
+                        <th class="text-center">职位</th>
+                        <th class="text-center">邮箱</th>
+                        <th class="text-center">备注</th>
+                        <th class="text-center">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for file in casefiles %}
                     <tr>
-                        {% for f in file %}
-                        <td>{{f}}</td>
-                        {% endfor %}
+                        <td>1</td>
+                        <td>mmss</td>
+                        <td>小小</td>
+                        <td>女</td>
+                        <td>12345678901</td>
+                        <td>经理</td>
+                        <td>1234567@163.com</td>
+                        <td>无</td>
                         <td>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
                             <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">删除</a>
-                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">下载</a>
+                        </td>
+                        <!-- Modal begin-->
+                        <!--添加-->
+                        
+                        
+                        <!--Modal end-->
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>mmss</td>
+                        <td>小小</td>
+                        <td>女</td>
+                        <td>12345678901</td>
+                        <td>经理</td>
+                        <td>1234567@163.com</td>
+                        <td>无</td>
+                        <td>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="添加">添加</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="编辑">编辑</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">删除</a>
                         </td>
                     </tr>
-                    {% endfor %}
+                    <tr>
+                        <td>1</td>
+                        <td>mmss</td>
+                        <td>小小</td>
+                        <td>女</td>
+                        <td>12345678901</td>
+                        <td>经理</td>
+                        <td>1234567@163.com</td>
+                        <td>无</td>
+                        <td>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="添加">添加</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="编辑">编辑</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>mmss</td>
+                        <td>小小</td>
+                        <td>女</td>
+                        <td>12345678901</td>
+                        <td>经理</td>
+                        <td>1234567@163.com</td>
+                        <td>无</td>
+                        <td>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="添加">添加</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="编辑">编辑</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>mmss</td>
+                        <td>小小</td>
+                        <td>女</td>
+                        <td>12345678901</td>
+                        <td>经理</td>
+                        <td>1234567@163.com</td>
+                        <td>无</td>
+                        <td>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="添加">添加</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="编辑">编辑</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>mmss</td>
+                        <td>小小</td>
+                        <td>女</td>
+                        <td>12345678901</td>
+                        <td>经理</td>
+                        <td>1234567@163.com</td>
+                        <td>无</td>
+                        <td>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="添加">添加</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="编辑">编辑</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>mmss</td>
+                        <td>小小</td>
+                        <td>女</td>
+                        <td>12345678901</td>
+                        <td>经理</td>
+                        <td>1234567@163.com</td>
+                        <td>无</td>
+                        <td>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="添加">添加</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add" data-whatever="编辑">编辑</a>
+                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">删除</a>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
                 <ul class="pagination right">
-                    <li><a href="/file/fileall/{{ pageNow|add:-1 }}/" aria-label="Previous"><span aria-hidden="true">«</span></a>
+                    <li class="disabled"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" aria-label="Previous"><span aria-hidden="true">«</span></a>
                     </li>
-                    {% for page in pageNums %}
-                        {% if pageNow == page %}
-                            <li class="active"><a href="/file/fileall/{{ page }}/">{{page}}<span class="sr-only">(current)</span></a></li>
-                        {% else %}
-                            <li><a href="/file/fileall/{{ page }}/">{{ page }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    <li><a href="/file/fileall/{{ pageNow|add:1 }}/" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    <li class="active"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#">2</a></li>
+                    <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#">3</a></li>
+                    <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#">4</a></li>
+                    <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#">5</a></li>
+                    <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
                 </ul>
             </div>
             <!--右侧内容结束-->
@@ -268,6 +400,6 @@
         modal.find('.modal-title').text('' + recipient)
         modal.find('.modal-body input').val(recipient)
     })
-</script><script src="/static/js/bootlint.js"></script>
+</script><script src="./file_files/bootlint.js.下载"></script>
 
 </body></html>
