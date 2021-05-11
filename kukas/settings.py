@@ -50,7 +50,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'kukas.middleware.loginMiddleware'
 ]
 
 ROOT_URLCONF = 'kukas.urls'
@@ -91,7 +90,7 @@ DATABASES = {
         'NAME': 'ptcases',# 你要存储数据的库名，事先要创建之
         'USER': 'root',# 数据库用户名
         'PASSWORD': 'mql123',# 密码
-        'HOST': '172.16.2.240',# 主机
+        'HOST': '127.0.0.1',# 主机
         'PORT': '3306',# 数据库使用的端口
     }
 }
