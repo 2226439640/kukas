@@ -132,7 +132,7 @@
                                         <ul>
                                             <li>
                                                 <label><span>序号 </span></label>
-                                                <input type="text" class="id">
+                                                <input type="text" class="id" disabled="disabled" >
                                             </li>
                                             <li>
                                                 <label><span>用例名称 </span></label>
@@ -181,35 +181,35 @@
                                         <ul>
                                             <li>
                                                 <label><span>序号 </span></label>
-                                                <input type="text">
+                                                <input type="text" class="id">
                                             </li>
                                             <li>
                                                 <label><span>用例名称 </span></label>
-                                                <input type="text">
+                                                <input type="text" class="name">
                                             </li>
                                             <li>
                                                 <label><span>前置条件 </span></label>
-                                                <input type="text">
+                                                <input type="text" class="precondition">
                                             </li>
                                             <li>
                                                 <label><span>步骤 </span></label>
-                                                <input type="text">
+                                                <input type="text" class="processing">
                                             </li>
                                             <li>
                                                 <label><span>预期结果 </span></label>
-                                                <input type="text">
+                                                <input type="text" class="result">
                                             </li>
                                             <li>
                                                 <label><span>需求id </span></label>
-                                                <input type="text">
+                                                <input type="text" class="id2">
                                             </li>
                                             <li>
                                                 <label><span>标签 </span></label>
-                                                <input type="text">
+                                                <input type="text" class="tag">
                                             </li>
                                             <li>
                                                 <label><span>等级 </span></label>
-                                                <input type="text">
+                                                <input type="text" class="level">
                                             </li>
                                         </ul>
                                     </div>
@@ -299,24 +299,27 @@
 	 $(".tag").val($(tds.eq(6)).text());
 	 $(".level").val($(tds.eq(7)).text());
 	 $('#add1').modal('show');
+
 }
 
 function getAjax() {
        $.ajax({
                    url: '/case/uploadcase/',
                    type: 'post',
-                   contentType: "application/json",
-                   data: {"id": $(".id").val(),
+                   contentType: "application/json,charset=utf-8",
+                   dataType: 'json',
+                   data: JSON.stringify({"id": $(".id").val(),
                           "name": $(".name").val(),
                           "precondition": $(".precondition").val(),
                           "processing": $(".processing").val(),
                           "result": $(".result").val(),
-                          "id2": $(".tag").val(),
-                          "tag": $(".level").val(),
-                          "level": $(".id").val()
-                   },
+                          "id2": $(".id2").val(),
+                          "tag": $(".tag").val(),
+                          "level": $(".level").val()
+                   }),
+
                 });
-       };
+       }
 </script>
 
 
