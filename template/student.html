@@ -181,7 +181,7 @@
                                         <ul>
                                             <li>
                                                 <label><span>序号 </span></label>
-                                                <input type="text" class="id">
+                                                <input type="text" class="id" disabled="disabled">
                                             </li>
                                             <li>
                                                 <label><span>用例名称 </span></label>
@@ -298,28 +298,48 @@
 	 $(".id2").val($(tds.eq(5)).text());
 	 $(".tag").val($(tds.eq(6)).text());
 	 $(".level").val($(tds.eq(7)).text());
+	 $('#edit').modal('show');
 	 $('#add1').modal('show');
 
 }
 
 function getAjax() {
        $.ajax({
+                   url: '/case/updatecase/',
+                   type: 'post',
+                   contentType: "application/json",
+                   dataType:"json",
+                   data: JSON.stringify({"caseid": $(".id").val(),
+                          "caseName": $(".name").val(),
+                          "casePre": $(".precondition").val(),
+                          "caseStep": $(".processing").val(),
+                          "caseResult": $(".result").val(),
+                          "needid": $(".id2").val(),
+                          "tag": $(".tag").val(),
+                          "grade": $(".level").val()
+                   }),
+                });
+                $("#edit").modal('hide');
+       };
+
+function getAjax2() {
+       $.ajax({
                    url: '/case/uploadcase/',
                    type: 'post',
-                   contentType: "application/json,charset=utf-8",
-                   dataType: 'json',
-                   data: JSON.stringify({"id": $(".id").val(),
-                          "name": $(".name").val(),
-                          "precondition": $(".precondition").val(),
-                          "processing": $(".processing").val(),
-                          "result": $(".result").val(),
-                          "id2": $(".id2").val(),
-                          "tag": $(".tag").val(),
-                          "level": $(".level").val()
+                   contentType: "application/json",
+                   dataType:"json",
+                   data: JSON.stringify({
+                          "caseName": $(".name1").val(),
+                          "casePre": $(".precondition1").val(),
+                          "caseStep": $(".processing1").val(),
+                          "caseResult": $(".result1").val(),
+                          "needid": $(".id21").val(),
+                          "tag": $(".tag1").val(),
+                          "grade": $(".level1").val()
                    }),
-
                 });
-       }
+       $("#add1").modal('hide');
+       };
 </script>
 
 
