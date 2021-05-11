@@ -13,7 +13,6 @@ def getAllCases(request):
 def insertCase(request):
     pass
 
-
 def students(request, page):
     queryset = StudentCases.objects.all()
     paginator = Paginator(queryset, 10)
