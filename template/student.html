@@ -10,6 +10,8 @@
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/mmss.css">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
     <style>
 
     </style>
@@ -23,15 +25,6 @@
             </li>
         </ul>
         <ul class="nav navbar-nav nav-pills right ">
-<!--            <li class="bg-warning ">-->
-<!--                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><span class="glyphicon glyphicon-tasks"></span><span class="badge">1</span></a>-->
-<!--            </li>-->
-<!--            <li class="bg-success">-->
-<!--                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><span class="glyphicon glyphicon-envelope"></span><span class="badge">2</span></a>-->
-<!--            </li>-->
-<!--            <li class="bg-danger">-->
-<!--                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><span class="glyphicon glyphicon-bell"></span></a>-->
-<!--            </li>-->
             <li class="bg-info dropdown">
                 <a class="dropdown-toggle" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user"></span>&nbsp;<span>系统管理员</span><span class="caret"></span>
@@ -127,67 +120,53 @@
                 </select>
                 <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
                 <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
-                <div  class="input-group line right">
-                    <form method="post" enctype="multipart/form-data">
-                        <input type="file" name="myfile"  class="form-control">
-                        <input type="submit" value="确定上传" name="upload" class="glyphicon glyphicon-upload">
-                    </form>
-                </div>>
                 <br><br>
                 <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                        <h4 class="modal-title" id="add11">添加</h4>
+                                        <h4 class="modal-title" id="myModalLabel">添加</h4>
                                     </div>
                                     <div class="modal-body">
                                         <ul>
                                             <li>
-                                                <label><span>序号 ：</span></label>
-                                                <input type="text">
+                                                <label><span>序号 </span></label>
+                                                <input type="text" class="id">
                                             </li>
                                             <li>
-                                                <label><span>用例名称 ：</span></label>
-                                                <input type="text">
+                                                <label><span>用例名称 </span></label>
+                                                <input type="text" class="name">
                                             </li>
                                             <li>
-                                                <label><span>前置条件 ：</span></label>
-                                                <input type="text">
+                                                <label><span>前置条件 </span></label>
+                                                <input type="text" class="precondition">
                                             </li>
                                             <li>
-                                                <label><span>步骤 ：</span></label>
-                                                <input type="text">
+                                                <label><span>步骤 </span></label>
+                                                <input type="text" class="processing">
                                             </li>
                                             <li>
-                                                <label><span>预期结果 ：</span></label>
-                                                <input type="text">
+                                                <label><span>预期结果 </span></label>
+                                                <input type="text" class="result">
                                             </li>
                                             <li>
-                                                <label><span>需求id ：</span></label>
-                                                <input type="text">
+                                                <label><span>需求id </span></label>
+                                                <input type="text" class="id2">
                                             </li>
                                             <li>
-                                                <label><span>标签 ：</span></label>
-                                                <input type="text">
+                                                <label><span>标签 </span></label>
+                                                <input type="text" class="tag">
                                             </li>
                                             <li>
-                                                <label><span>等级 ：</span></label>
-                                                <input type="text">
-                                            </li>
-                                            <li>
-                                                <label><span>创建人 ：</span></label>
-                                                <input type="text">
-                                            </li>
-                                            <li>
-                                                <label><span>最后更新时间 ：</span></label>
-                                                <input type="text">
+                                                <label><span>等级 </span></label>
+                                                <input type="text" class="level">
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        <button type="button" class="btn btn-primary btn-sm">保存</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="getAjax()">保存</button>
                                     </div>
                                 </div>
                             </div>
@@ -201,42 +180,42 @@
                                     <div class="modal-body">
                                         <ul>
                                             <li>
-                                                <label><span>序号 ：</span></label>
+                                                <label><span>序号 </span></label>
                                                 <input type="text">
                                             </li>
                                             <li>
-                                                <label><span>用户名 ：</span></label>
+                                                <label><span>用例名称 </span></label>
                                                 <input type="text">
                                             </li>
                                             <li>
-                                                <label><span>姓名 ：</span></label>
+                                                <label><span>前置条件 </span></label>
                                                 <input type="text">
                                             </li>
                                             <li>
-                                                <label><span>性别 ：</span></label>
+                                                <label><span>步骤 </span></label>
                                                 <input type="text">
                                             </li>
                                             <li>
-                                                <label><span>身份证 ：</span></label>
+                                                <label><span>预期结果 </span></label>
                                                 <input type="text">
                                             </li>
                                             <li>
-                                                <label><span>职位 ：</span></label>
+                                                <label><span>需求id </span></label>
                                                 <input type="text">
                                             </li>
                                             <li>
-                                                <label><span>邮箱 ：</span></label>
+                                                <label><span>标签 </span></label>
                                                 <input type="text">
                                             </li>
                                             <li>
-                                                <label><span>备注 ：</span></label>
+                                                <label><span>等级 </span></label>
                                                 <input type="text">
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        <button type="button" class="btn btn-primary btn-sm">保存</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="getAjax()">保存</button>
                                     </div>
                                 </div>
                             </div>
@@ -263,9 +242,9 @@
                                 <td>{{s}}</td>
                             {% endfor %}
                         <td>
-                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
-                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
-                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">删除</a>
+                            <a class="btn btn-primary btn-sm" onclick="showDialog(this)" >添加</a>
+                            <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
+                            <a href="" class="btn btn-primary btn-sm">删除</a>
                         </td>
                         </tr>
                     {% endfor %}
@@ -281,11 +260,6 @@
                             <li><a href="http://127.0.0.1:8000/case/students/{{ page }}/">{{ page }}</a></li>
                         {% endif %}
                     {% endfor %}
-
-<!--                    <li><a href="http://127.0.0.1:8000/case/students/2/">2</a></li>-->
-<!--                    <li><a href="http://127.0.0.1:8000/case/students/3/">3</a></li>-->
-<!--                    <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#">4</a></li>-->
-<!--                    <li><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#">5</a></li>-->
                     <li><a href="http://127.0.0.1:8000/case/students/{{ pageNow|add:1 }}/" aria-label="Next"><span aria-hidden="true">»</span></a></li>
                 </ul>
             </div>
@@ -298,8 +272,6 @@
     <p class="text-center text-white">版权所有©lxp</p>
 </footer>
 
-<script src="static/js/jquery-1.11.3.js"></script>
-<script src="static/js/bootstrap.js"></script>
 <script>
     /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测*/
     (function () {
@@ -311,16 +283,42 @@
         document.body.appendChild(s)
     })();
 
-//    添加编辑模态框
-    $('#add').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        modal.find('.modal-title').text('' + recipient)
-        modal.find('.modal-body input').val(recipient)
-    })
-</script><script src="/static/js/bootlint.js"></script>
+    function showDialog(obj){
+	//点击更新按钮后展示模态框
+
+	 //获取当前行的所有列
+	 var tds= $(obj).parent().parent().find('td');
+	 //(".id"):通过class属性获取当前需要填写数据的输入框
+	 //$(tds.eq(0)).text():通过下标取得对应列中的值
+	 $(".id").val($(tds.eq(0)).text());
+	 $(".name").val($(tds.eq(1)).text());
+	 $(".precondition").val($(tds.eq(2)).text());
+	 $(".processing").val($(tds.eq(3)).text());
+	 $(".result").val($(tds.eq(4)).text());
+	 $(".id2").val($(tds.eq(5)).text());
+	 $(".tag").val($(tds.eq(6)).text());
+	 $(".level").val($(tds.eq(7)).text());
+	 $('#add1').modal('show');
+}
+
+function getAjax() {
+       $.ajax({
+                   url: '/case/uploadcase/',
+                   type: 'post',
+                   contentType: "application/json",
+                   data: {"id": $(".id").val(),
+                          "name": $(".name").val(),
+                          "precondition": $(".precondition").val(),
+                          "processing": $(".processing").val(),
+                          "result": $(".result").val(),
+                          "id2": $(".tag").val(),
+                          "tag": $(".level").val(),
+                          "level": $(".id").val()
+                   },
+                });
+       };
+</script>
+
+
 
 </body></html>
