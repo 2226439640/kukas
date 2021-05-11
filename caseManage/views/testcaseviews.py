@@ -113,3 +113,10 @@ def others(request, page):
     res = serializers.serialize('json', other)
     res = json.loads(res)
     return render(request, 'other.html', {"others": res, "pageNums": range(1, paginator.num_pages+1), "pageNow": int(page)})
+
+
+def uploadCase(request):
+    #TODO
+    data = json.loads(request.body.decode("utf-8"))
+    print(data)
+    return render(request, 'student.html')
