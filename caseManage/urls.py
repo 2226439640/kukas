@@ -6,6 +6,7 @@ urlpatterns = [
     path('download/', fileviews.download),
     path('index/', testcaseviews.getAllCases),
     path('uploadcase/', testcaseviews.uploadCase),
+    path('updatecase/', testcaseviews.updateCase),
     re_path('fileall/(\d+)/', fileviews.getAllFiles),
     re_path('students/(\d+)/', testcaseviews.students),
     re_path('teachers/(\d+)/', testcaseviews.teachers),

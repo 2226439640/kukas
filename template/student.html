@@ -131,8 +131,53 @@
                                     <div class="modal-body">
                                         <ul>
                                             <li>
+                                                <label><span>用例名称 </span></label>
+                                                <input type="text" class="name1">
+                                            </li>
+                                            <li>
+                                                <label><span>前置条件 </span></label>
+                                                <input type="text" class="precondition1">
+                                            </li>
+                                            <li>
+                                                <label><span>步骤 </span></label>
+                                                <input type="text" class="processing1">
+                                            </li>
+                                            <li>
+                                                <label><span>预期结果 </span></label>
+                                                <input type="text" class="result1">
+                                            </li>
+                                            <li>
+                                                <label><span>需求id </span></label>
+                                                <input type="text" class="id21">
+                                            </li>
+                                            <li>
+                                                <label><span>标签 </span></label>
+                                                <input type="text" class="tag1">
+                                            </li>
+                                            <li>
+                                                <label><span>等级 </span></label>
+                                                <input type="text" class="level1">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="getAjax2()">保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="edit" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        <h4 class="modal-title" id="myModalLabel1">编辑</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            <li>
                                                 <label><span>序号 </span></label>
-                                                <input type="text" class="id">
+                                                <input type="text" class="id" disabled="disabled">
                                             </li>
                                             <li>
                                                 <label><span>用例名称 </span></label>
@@ -170,55 +215,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="edit" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                        <h4 class="modal-title" id="myModalLabel1">编辑</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <ul>
-                                            <li>
-                                                <label><span>序号 </span></label>
-                                                <input type="text">
-                                            </li>
-                                            <li>
-                                                <label><span>用例名称 </span></label>
-                                                <input type="text">
-                                            </li>
-                                            <li>
-                                                <label><span>前置条件 </span></label>
-                                                <input type="text">
-                                            </li>
-                                            <li>
-                                                <label><span>步骤 </span></label>
-                                                <input type="text">
-                                            </li>
-                                            <li>
-                                                <label><span>预期结果 </span></label>
-                                                <input type="text">
-                                            </li>
-                                            <li>
-                                                <label><span>需求id </span></label>
-                                                <input type="text">
-                                            </li>
-                                            <li>
-                                                <label><span>标签 </span></label>
-                                                <input type="text">
-                                            </li>
-                                            <li>
-                                                <label><span>等级 </span></label>
-                                                <input type="text">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        <button type="button" class="btn btn-primary btn-sm" onclick="getAjax()">保存</button>
-                                    </div>
-                                </div>
-                            </div>
                         </div><table class="table table-bordered table-striped text-center bg-info">
                     <thead>
                     <tr class="info">
@@ -242,8 +238,8 @@
                                 <td>{{s}}</td>
                             {% endfor %}
                         <td>
-                            <a class="btn btn-primary btn-sm" onclick="showDialog(this)" >添加</a>
-                            <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
+                            <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1" >添加</a>
+                            <a class="btn btn-primary btn-sm" onclick="showDialog(this)">编辑</a>
                             <a href="" class="btn btn-primary btn-sm">删除</a>
                         </td>
                         </tr>
@@ -298,24 +294,45 @@
 	 $(".id2").val($(tds.eq(5)).text());
 	 $(".tag").val($(tds.eq(6)).text());
 	 $(".level").val($(tds.eq(7)).text());
-	 $('#add1').modal('show');
+	 $('#edit').modal('show');
 }
 
 function getAjax() {
        $.ajax({
+                   url: '/case/updatecase/',
+                   type: 'post',
+                   contentType: "application/json",
+                   dataType:"json",
+                   data: JSON.stringify({"caseid": $(".id").val(),
+                          "caseName": $(".name").val(),
+                          "casePre": $(".precondition").val(),
+                          "caseStep": $(".processing").val(),
+                          "caseResult": $(".result").val(),
+                          "needid": $(".id2").val(),
+                          "tag": $(".tag").val(),
+                          "grade": $(".level").val()
+                   }),
+                });
+                $("#edit").modal('hide');
+       };
+
+function getAjax2() {
+       $.ajax({
                    url: '/case/uploadcase/',
                    type: 'post',
                    contentType: "application/json",
-                   data: {"id": $(".id").val(),
-                          "name": $(".name").val(),
-                          "precondition": $(".precondition").val(),
-                          "processing": $(".processing").val(),
-                          "result": $(".result").val(),
-                          "id2": $(".tag").val(),
-                          "tag": $(".level").val(),
-                          "level": $(".id").val()
-                   },
+                   dataType:"json",
+                   data: JSON.stringify({
+                          "caseName": $(".name1").val(),
+                          "casePre": $(".precondition1").val(),
+                          "caseStep": $(".processing1").val(),
+                          "caseResult": $(".result1").val(),
+                          "needid": $(".id21").val(),
+                          "tag": $(".tag1").val(),
+                          "grade": $(".level1").val()
+                   }),
                 });
+       $("#add1").modal('hide');
        };
 </script>
 

@@ -116,7 +116,25 @@ def others(request, page):
 
 
 def uploadCase(request):
-    #TODO
     data = json.loads(request.body.decode("utf-8"))
-    print(data)
-    return render(request, 'student.html')
+    data["user"] = Users.objects.get(uid=request.session["userid"])
+    case = StudentCases.objects.create(**data)
+    case.save()
+
+    return students(request, 1)
+
+
+def updateCase(request):
+    data = json.loads(request.body.decode("utf-8"))
+    case = StudentCases.objects.filter(caseid=data['caseid'])
+
+    case.caseName = data['caseName']
+    case.casePre = data['casePre']
+    case.caseStep = data['caseStep']
+    case.caseResult = data['caseResult']
+    case.needid = data['needid']
+    case.tag = data['tag']
+    case.grade = data['grade']
+    case.creatorname = request.session['username']
+    case.user_id = request.session['userid']
+    case.save()

@@ -11,6 +11,7 @@ def login(request):
         user = Users.objects.filter(name=username, password=pwd).first()
         if user:
             request.session['username'] = username
+            request.session['userid'] = user.uid
             return render(request, 'index.html')
         else:
             return render(request, 'login.html', {'msg': '用户信息错误!'})
