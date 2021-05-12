@@ -129,7 +129,7 @@
                                         <ul>
                                             <li>
                                                 <label><span>序号 ：</span></label>
-                                                <input type="text">
+                                                <input type="text" class="fileid">
                                             </li>
                                             <li>
                                                 <label><span>文件名 ：</span></label>
@@ -216,7 +216,7 @@
                         <td>{{f}}</td>
                         {% endfor %}
                         <td>
-                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">删除</a>
+                            <a href="{% url 'delfileCase' %}?fileid={{ file.0 }}" class="btn btn-primary btn-sm">删除</a>
                             <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">下载</a>
                         </td>
                     </tr>
@@ -268,6 +268,7 @@
         modal.find('.modal-title').text('' + recipient)
         modal.find('.modal-body input').val(recipient)
     })
+
 </script><script src="/static/js/bootlint.js"></script>
 
 </body></html>

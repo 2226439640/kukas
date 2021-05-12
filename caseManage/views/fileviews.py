@@ -14,6 +14,10 @@ from threading import Thread
 import json
 
 
+def delfileCase(request):
+    fiid = request.GET.get('fileid')
+    CaseFiles.objects.filter(fid=fiid).delete()
+    return HttpResponseRedirect("/file/fileall/1/")
 
 #TODO
 def getAllFiles(request, page):
