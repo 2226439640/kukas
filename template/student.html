@@ -130,43 +130,43 @@
                                     </div>
                                     <div class="modal-body">
                                         <ul>
-                                            <li>
-                                                <label><span>序号 </span></label>
-                                                <input type="text" class="id" disabled="disabled" >
-                                            </li>
+{#                                            <li>#}
+{#                                                <label><span>序号 </span></label>#}
+{#                                                <input type="text" class="id" disabled="disabled" >#}
+{#                                            </li>#}
                                             <li>
                                                 <label><span>用例名称 </span></label>
-                                                <input type="text" class="name">
+                                                <input type="text" class="name1">
                                             </li>
                                             <li>
                                                 <label><span>前置条件 </span></label>
-                                                <input type="text" class="precondition">
+                                                <input type="text" class="precondition1">
                                             </li>
                                             <li>
                                                 <label><span>步骤 </span></label>
-                                                <input type="text" class="processing">
+                                                <input type="text" class="processing1">
                                             </li>
                                             <li>
                                                 <label><span>预期结果 </span></label>
-                                                <input type="text" class="result">
+                                                <input type="text" class="result1">
                                             </li>
                                             <li>
                                                 <label><span>需求id </span></label>
-                                                <input type="text" class="id2">
+                                                <input type="text" class="id21">
                                             </li>
                                             <li>
                                                 <label><span>标签 </span></label>
-                                                <input type="text" class="tag">
+                                                <input type="text" class="tag1">
                                             </li>
                                             <li>
                                                 <label><span>等级 </span></label>
-                                                <input type="text" class="level">
+                                                <input type="text" class="level1">
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        <button type="button" class="btn btn-primary btn-sm" onclick="getAjax()">保存</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="getAjax2()">保存</button>
                                     </div>
                                 </div>
                             </div>
@@ -242,9 +242,11 @@
                                 <td>{{s}}</td>
                             {% endfor %}
                         <td>
-                            <a class="btn btn-primary btn-sm" onclick="showDialog(this)" >添加</a>
-                            <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
-                            <a href="" class="btn btn-primary btn-sm">删除</a>
+{#                            <a class="btn btn-primary btn-sm" onclick="showDialog(this)" >添加</a>#}
+{#                            <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>#}
+                            <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1" >添加</a>
+                            <a class="btn btn-primary btn-sm" onclick="showDialog(this)">编辑</a>
+                            <a class="btn btn-primary btn-sm" onclick="getid(this), getAjax3()">删除</a>
                         </td>
                         </tr>
                     {% endfor %}
@@ -299,8 +301,15 @@
 	 $(".tag").val($(tds.eq(6)).text());
 	 $(".level").val($(tds.eq(7)).text());
 	 $('#edit').modal('show');
-	 $('#add1').modal('show');
+	 {#$('#add1').modal('show');#}
 
+}
+
+function getid(obj) {
+   var tds= $(obj).parent().parent().find('td');
+	 //(".id"):通过class属性获取当前需要填写数据的输入框
+	 //$(tds.eq(0)).text():通过下标取得对应列中的值
+	 $(".id").val($(tds.eq(0)).text());
 }
 
 function getAjax() {
@@ -322,6 +331,7 @@ function getAjax() {
                 $("#edit").modal('hide');
        };
 
+
 function getAjax2() {
        $.ajax({
                    url: '/case/uploadcase/',
@@ -339,6 +349,23 @@ function getAjax2() {
                    }),
                 });
        $("#add1").modal('hide');
+       };
+
+function getAjax3() {
+
+       $.ajax({
+                   url: '/case/delcase/',
+                   type: 'post',
+                   contentType: "application/json",
+                   dataType:"json",
+                   data: JSON.stringify({
+                          "caseid":$(".id").val()
+
+
+                   }),
+
+                });
+
        };
 </script>
 

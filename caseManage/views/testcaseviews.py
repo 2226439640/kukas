@@ -126,14 +126,21 @@ def uploadCase(request):
 def updateCase(request):
     data = json.loads(request.body.decode("utf-8"))
     case = StudentCases.objects.filter(caseid=data['caseid'])
+    for i in range(len(case)):
+        case[i].caseName = data['caseName']
+        case[i].casePre = data['casePre']
+        case[i].caseStep = data['caseStep']
+        case[i].caseResult = data['caseResult']
+        case[i].needid = data['needid']
+        case[i].tag = data['tag']
+        case[i].grade = data['grade']
+        case[i].creatorname = request.session['username']
+        case[i].user_id = request.session['userid']
+        case[i].save()
 
-    case.caseName = data['caseName']
-    case.casePre = data['casePre']
-    case.caseStep = data['caseStep']
-    case.caseResult = data['caseResult']
-    case.needid = data['needid']
-    case.tag = data['tag']
-    case.grade = data['grade']
-    case.creatorname = request.session['username']
-    case.user_id = request.session['userid']
-    case.save()
+    return HttpResponse("修改成功")
+
+def delCase(request):
+    data = json.loads(request.body.decode("utf-8"))
+    StudentCases.objects.filter(caseid=data['caseid']).delete()
+    return HttpResponse("删除成功")
