@@ -217,7 +217,7 @@
                         {% endfor %}
                         <td>
                             <a href="{% url 'delfileCase' %}?fileid={{ file.0 }}" class="btn btn-primary btn-sm">删除</a>
-                            <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class="btn btn-primary btn-sm">下载</a>
+                            <a href="{% url 'downFile' %}?filename={{ file.1 }}" class="btn btn-primary btn-sm">下载</a>
                         </td>
                     </tr>
                     {% endfor %}

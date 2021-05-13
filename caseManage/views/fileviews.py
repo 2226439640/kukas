@@ -11,12 +11,30 @@ from django.utils.http import urlquote
 from caseManage.models import CaseFiles
 from django.db import connection
 from threading import Thread
-import json
+import json,shutil
+import os
 
+def GetDesktopPath():
+    return os.path.join(os.path.expanduser("~"), 'Desktop')
 
+#删除文件
 def delfileCase(request):
     fiid = request.GET.get('fileid')
     CaseFiles.objects.filter(fid=fiid).delete()
+    return HttpResponseRedirect("/file/fileall/1/")
+
+#dir_path是文件的存放地目录，tar_path是文件下载的目的地
+def downFile(request):
+    filename = request.GET.get('filename')
+    print("os-------------当前路径",os.getcwd())
+    dir_path = "/Users/lixiaopeng/Desktop/cases/caseManage/upload"
+    tar_path = GetDesktopPath()
+    name = os.listdir(dir_path)
+    for i in name:
+        j = i.split('.')
+        if j[0] == filename:
+            shutil.copyfile(dir_path+'/'+filename+'.xlsx',tar_path+'/'+filename+'.xlsx')
+            print("下载成功")
     return HttpResponseRedirect("/file/fileall/1/")
 
 #TODO
