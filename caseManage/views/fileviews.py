@@ -28,14 +28,21 @@ def downFile(request):
     filename = request.GET.get('filename')
     print("os-------------当前路径",os.getcwd())
     dir_path = "/Users/lixiaopeng/Desktop/cases/caseManage/upload"
-    tar_path = GetDesktopPath()
-    name = os.listdir(dir_path)
-    for i in name:
-        j = i.split('.')
-        if j[0] == filename:
-            shutil.copyfile(dir_path+'/'+filename+'.xlsx',tar_path+'/'+filename+'.xlsx')
-            print("下载成功")
-    return HttpResponseRedirect("/file/fileall/1/")
+    # tar_path = GetDesktopPath()
+    # name = os.listdir(dir_path)
+    # for i in name:
+    #     j = i.split('.')
+    #     if j[0] == filename:
+    #         shutil.copyfile(dir_path+'/'+filename+'.xlsx',tar_path+'/'+filename+'.xlsx')
+    #         print("下载成功")
+    # return HttpResponseRedirect("/file/fileall/1/")
+
+    file = open(dir_path+'/'+filename+'.xlsx', 'rb')
+    response = FileResponse(file)
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = "attachment;filename = downname.xlsx"
+    return response
+
 
 #TODO
 def getAllFiles(request, page):
