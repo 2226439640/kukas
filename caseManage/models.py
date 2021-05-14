@@ -120,7 +120,7 @@ class QuestioCases(models.Model):
     needid = models.IntegerField(verbose_name='需求id')
     tag = models.CharField(verbose_name='标签', max_length=100, choices=tag_choice)
     grade = models.CharField(verbose_name='等级', max_length=100, choices=grade_choice)
-    endupdate = models.DateTimeField(verbose_name='最后更新时间', default=timezone.now())
+    endupdate = models.DateTimeField(verbose_name='最后更新时间', auto_now=True)
     creatorname = models.CharField(verbose_name="创建人",max_length=100)
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='用户名')
     "定义数据库名"
