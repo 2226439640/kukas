@@ -31,8 +31,6 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li class="text-center"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><span class="text-primary">账号设置</span></a></li>
-                    <li class="text-center"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><span class="text-primary">消息设置</span></a></li>
-                    <li class="text-center"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"><span class="text-primary">帮助中心</span></a></li>
                     <li class="divider"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#"></a></li>
                     <li class="text-center"><a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/login.html"><span class="text-primary">退出</span></a></li>
                 </ul>
@@ -109,14 +107,24 @@
                 </ol>
                 <div class="input-group line left">
                     <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" class="form-control" placeholder="输入关键字搜索" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control" placeholder="用例名称" aria-describedby="basic-addon2">
                 </div>
-                <select class="form-control line left">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <div class="input-group line left">
+                    <span class="input-group-addon" id="basic-addon3"></span>
+                    <input type="text" class="form-control" placeholder="标签名" aria-describedby="basic-addon3">
+                </div>
+                <div class="input-group line left">
+                    <span class="input-group-addon" id="basic-addon4"></span>
+                    <input type="text" class="form-control" placeholder="创建人" aria-describedby="basic-addon4">
+                </div>
+                <div class="input-group line left">
+                    <span class="input-group-addon" id="basic-addon5"></span>
+                    <input type="text" class="form-control" placeholder="需求id" aria-describedby="basic-addon5">
+                </div>
+                <select class="form-control line left" id="grade_ca">
+                    <option>风险-高</option>
+                    <option>风险-中</option>
+                    <option>风险-低</option>
                 </select>
                 <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
                 <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
@@ -360,6 +368,26 @@ function getAjax3() {
                    dataType:"json",
                    data: JSON.stringify({
                           "caseid":$(".id").val()
+
+
+                   }),
+
+                });
+
+       };
+function getAjax4() {
+
+       $.ajax({
+                   url: '/case//',
+                   type: 'post',
+                   contentType: "application/json",
+                   dataType:"json",
+                   data: JSON.stringify({
+                          "casename":$("#basic-addon2").val(),
+                          "tagname":$("#basic-addon3").val(),
+                          "creatorname":$("#basic-addon4").val(),
+                          "needid":$("#basic-addon5").val(),
+                          "risklevel":$("#grade_ca").val()
 
 
                    }),

@@ -10,6 +10,8 @@
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/mmss.css">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+     <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
     <style>
 
     </style>
@@ -24,7 +26,7 @@
         </ul>
         <ul class="nav navbar-nav nav-pills right ">
             <li class="bg-info dropdown">
-                <a class="dropdown-toggle" href="http://127.0.0.1:8000/case/index/" data-toggle="dropdown">
+                <a class="dropdown-toggle" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user"></span>&nbsp;<span>系统管理员</span><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
@@ -133,7 +135,7 @@
                         {% endfor %}
                         <td>
                             <a href="{% url 'delfileCase' %}?fileid={{ file.0 }}" class="btn btn-primary btn-sm">删除</a>
-                            <a href="{% url 'downFile' %}?filename={{ file.0 }}" class="btn btn-primary btn-sm">下载</a>
+                            <a href="{% url 'downFile' %}?filename={{ file.1 }}" class="btn btn-primary btn-sm">下载</a>
                         </td>
                     </tr>
                     {% endfor %}

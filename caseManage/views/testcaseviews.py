@@ -3,7 +3,7 @@ from caseManage.models import *
 from django.core import serializers
 from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage, EmptyPage
 import json
-
+from django.db import connection
 
 def getAllCases(request):
 
@@ -144,3 +144,32 @@ def delCase(request):
     data = json.loads(request.body.decode("utf-8"))
     StudentCases.objects.filter(caseid=data['caseid']).delete()
     return HttpResponse("删除成功")
+
+def searchcase(request,page):
+
+    if request.method == "POST":
+        case_name = request.POST.get('casename')
+        tag_name = request.POST.get('tagname')
+        creator_name = request.POST.get('creatorname')
+        need_id = request.POST.get('needid')
+        risk_level = request.POST.get('risklevel')
+        if all(case_name,tag_name,creator_name,need_id,risk_level):
+            sql = f"select * from studentcases where caseName like %{case_name}% and tag like %{tag_name}% and creatorname like %{creator_name}% and grade like %{risk_level}% and needid like %{need_id}% "
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            query = cursor.fetchall()
+        print(query)
+        paginator = Paginator(query, 10)
+        try:
+            princpal = paginator.page(page)
+        except PageNotAnInteger:
+            princpal = paginator.page(1)
+        except InvalidPage:
+            return HttpResponse('找不到页面的内容')
+        except EmptyPage:
+            princpal = paginator.page(paginator.num_pages)
+
+        res = serializers.serialize('json', princpal)
+        res = json.loads(res)
+        return render(request, 'student.html',{"students": res, "pageNums": range(1, paginator.num_pages + 1), "pageNow": int(page)})
+

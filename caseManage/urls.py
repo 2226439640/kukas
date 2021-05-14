@@ -3,7 +3,7 @@ from caseManage.views import fileviews,testcaseviews,userviews
 
 urlpatterns = [
     path('upload/', fileviews.upload),
-    path('download/', fileviews.download),
+    # path('download/', fileviews.download),
     path('index/', testcaseviews.getAllCases),
     path('uploadcase/', testcaseviews.uploadCase),
     path('updatecase/', testcaseviews.updateCase),

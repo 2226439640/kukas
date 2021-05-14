@@ -29,11 +29,12 @@ def delfileCase(request):
 def downFile(request):
     fid = request.GET.get('fileid')
     res = CaseFiles.objects.filter(fid=fid)
-    file = open(os.path.join(res.filepath, res.filename), "rb")
-    response = FileResponse(file)
-    response['Content-Type'] = 'application/octet-stream'
-    response['Content-Disposition'] = f"attachment;filename = {res.filename}.xlsx"
-    return response
+    for i in range(len(res)):
+        file = open(os.path.join(res[i].filepath, res[i].filename), "rb")
+        response = FileResponse(file)
+        response['Content-Type'] = 'application/octet-stream'
+        response['Content-Disposition'] = f"attachment;filename = {res.filename}.xlsx"
+        return response
 
 
 #TODO
