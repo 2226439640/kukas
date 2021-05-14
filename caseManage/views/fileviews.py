@@ -28,21 +28,22 @@ def delfileCase(request):
 #dir_path是文件的存放地目录，tar_path是文件下载的目的地
 def downFile(request):
     fid = request.GET.get('fileid')
-    res = CaseFiles.objects.filter(fid=fid)
-    file = open(os.path.join(res.filepath, res.filename), "rb")
+    res = CaseFiles.objects.get(fid=fid)
+    file = open(res.filepath, "rb")
     response = FileResponse(file)
     response['Content-Type'] = 'application/octet-stream'
-    response['Content-Disposition'] = f"attachment;filename = {res.filename}.xlsx"
+    from urllib import parse
+    name = parse.quote(res.filename)
+    response['Content-Disposition'] = f"attachment;filename={name}"
     return response
 
 
 #TODO
 def getAllFiles(request, page):
-    sql = "select c.fid, c.filename, c.endupdate, u.`name` from casefiles AS c, users AS u where c.user_id = u.uid;"
+    sql = "select c.fid, c.filename, c.endupdate, u.`name` from casefiles AS c, users AS u where c.user_id = u.uid order by c.endupdate;"
     with connection.cursor() as cursor:
         cursor.execute(sql)
         query = cursor.fetchall()
-    print(query)
     paginator = Paginator(query, 10)
     try:
         casefiles = paginator.page(page)
@@ -116,17 +117,19 @@ def upload(request):
         if ".xls" not in file.name:
             return render(request, "file.html", {"message": "上传文件格式不对!"})
         def save(obj, dirpath):
-            fp = open(os.path.join(dirpath, obj.filename), "wb")
+            if not os.path.exists(dirpath):
+                os.mkdir(dirpath)
+            fp = open(os.path.join(dirpath, obj.name), "wb")
             for chunk in obj.chunks():
                 fp.write(chunk)
             fp.close()
-            synDB(os.path.join('../upload', obj.name), request.session['username'], request.session['userid'])
+            synDB(os.path.join(dirpath, obj.name), request.session['username'], request.session['userid'])
         data = dict()
         data['filename'] = file.name
-        data['filepath'] = os.path.join('../upload', datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S"))
+        data['filepath'] = os.path.join(r'../upload', datetime.strftime(datetime.now(), "%Y%m%d-%H%M%S"))
         data['user_id'] = request.session['userid']
-        file = CaseFiles.objects.create(**data)
-        file.save()
+        files = CaseFiles.objects.create(**data)
+        files.save()
         th = Thread(target=save, args=(file, data["filepath"],))
         th.start()
         th.join()
@@ -139,3 +142,5 @@ def upload(request):
 if __name__ == '__main__':
     t1 = Thread(target=download, args=('users',))
     t1.start()
+    import requests
+    requests.get

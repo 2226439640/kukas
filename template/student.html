@@ -239,7 +239,11 @@
                         <tr>
                             <td>{{student.pk}}</td>
                             {% for s in student.fields.values %}
-                                <td>{{s}}</td>
+                                {% if forloop.counter == 9%}
+                                <td>{{s|date:"Y-m-d H:i:s"}}</td>
+                                {% else%}
+                                    <td>{{s}}</td>
+                                {% endif %}
                             {% endfor %}
                         <td>
 {#                            <a class="btn btn-primary btn-sm" onclick="showDialog(this)" >添加</a>#}
