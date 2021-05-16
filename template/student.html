@@ -106,27 +106,28 @@
                     <li class="active">系统管理 - 表格</li>
                 </ol>
                 <div class="input-group line left">
-                    <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" class="form-control" placeholder="用例名称" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="basic-addon2"></span>
+                    <input type="text" class="licasename" placeholder="用例名称" aria-describedby="basic-addon2">
                 </div>
                 <div class="input-group line left">
                     <span class="input-group-addon" id="basic-addon3"></span>
-                    <input type="text" class="form-control" placeholder="标签名" aria-describedby="basic-addon3">
+                    <input type="text" class="litagname" placeholder="标签名" aria-describedby="basic-addon3">
                 </div>
                 <div class="input-group line left">
                     <span class="input-group-addon" id="basic-addon4"></span>
-                    <input type="text" class="form-control" placeholder="创建人" aria-describedby="basic-addon4">
+                    <input type="text" class="licreator" placeholder="创建人" aria-describedby="basic-addon4">
                 </div>
                 <div class="input-group line left">
                     <span class="input-group-addon" id="basic-addon5"></span>
-                    <input type="text" class="form-control" placeholder="需求id" aria-describedby="basic-addon5">
+                    <input type="text" class="lineedid" placeholder="需求id" aria-describedby="basic-addon5">
                 </div>
-                <select class="form-control line left" id="grade_ca">
-                    <option>风险-高</option>
-                    <option>风险-中</option>
-                    <option>风险-低</option>
+                <select class=" line left" id="grade_ca" placeholder="风险">
+                    <option></option>
+                    <option>高</option>
+                    <option>中</option>
+                    <option>低</option>
                 </select>
-                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
+                <a class=" btn btn-primary "><span class="glyphicon glyphicon-search" onclick="getAjax4()" ></span></a>
                 <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
                 <br><br>
                 <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
@@ -382,15 +383,15 @@ function getAjax3() {
 function getAjax4() {
 
        $.ajax({
-                   url: '/case//',
+                   url: '/case/search/{{ pageNow }}/',
                    type: 'post',
                    contentType: "application/json",
                    dataType:"json",
                    data: JSON.stringify({
-                          "casename":$("#basic-addon2").val(),
-                          "tagname":$("#basic-addon3").val(),
-                          "creatorname":$("#basic-addon4").val(),
-                          "needid":$("#basic-addon5").val(),
+                          "casename":$(".licasename").val(),
+                          "tagname":$(".litagname").val(),
+                          "creatorname":$(".licreator").val(),
+                          "needid":$(".lineedid").val(),
                           "risklevel":$("#grade_ca").val()
 
 
