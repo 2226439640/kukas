@@ -133,11 +133,15 @@
                     {% for file in casefiles %}
                     <tr>
                         {% for f in file %}
-                        <td>{{f}}</td>
+                        {% if forloop.counter == 3%}
+                        <td>{{f|date:"Y-m-d H:i:s"}}</td>
+                        {% else%}
+                            <td>{{f}}</td>
+                        {% endif %}
                         {% endfor %}
                         <td>
                             <a href="{% url 'delfileCase' %}?fileid={{ file.0 }}" class="btn btn-primary btn-sm">删除</a>
-                            <a href="{% url 'downFile' %}?filename={{ file.1 }}" class="btn btn-primary btn-sm">下载</a>
+                            <a href="{% url 'downFile' %}?fileid={{ file.0 }}" class="btn btn-primary btn-sm">下载</a>
                         </td>
                     </tr>
                     {% endfor %}
