@@ -28,13 +28,14 @@ def delfileCase(request):
 #dir_path是文件的存放地目录，tar_path是文件下载的目的地
 def downFile(request):
     fid = request.GET.get('fileid')
-    res = CaseFiles.objects.filter(fid=fid)
-    for i in range(len(res)):
-        file = open(os.path.join(res[i].filepath, res[i].filename), "rb")
-        response = FileResponse(file)
-        response['Content-Type'] = 'application/octet-stream'
-        response['Content-Disposition'] = f"attachment;filename = {res.filename}.xlsx"
-        return response
+    res = CaseFiles.objects.get(fid=fid)
+    file = open(res.filepath, "rb")
+    response = FileResponse(file)
+    response['Content-Type'] = 'application/octet-stream'
+    from urllib import parse
+    name = parse.quote(res.filename)
+    response['Content-Disposition'] = f"attachment;filename={name}"
+    return response
 
 
 #TODO
