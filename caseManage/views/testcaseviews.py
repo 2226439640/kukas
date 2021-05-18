@@ -155,11 +155,11 @@ def searchcase(request, page):
     tag_level = data['taglevel']
     if tag_level != "":
         if search_case != "":
-            sql = f'select * from studentcases where (caseName={search_case} or tag={search_case}) and grade={tag_level};'
+            sql = f'select * from studentcases where (caseName="{search_case}" or tag="{search_case}") and grade="{tag_level}";'
         else:
             sql = f'select * from studentcases where grade="{tag_level}";'
     else:
-        sql = f'select * from studentcases where caseName={search_case} or tag={search_case};'
+        sql = f'select * from studentcases where caseName="{search_case}" or tag="{search_case}";'
     with connection.cursor() as cursor:
         cursor.execute(sql)
         query = cursor.fetchall()
