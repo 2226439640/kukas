@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0060)http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html -->
 <html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+    <meta charset="utf-8" />
     <meta name="author" content="order by dede58.com">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -83,7 +83,7 @@
                     <div class="panel panel-default menu-first">
                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             <i class="icon-book icon-large"></i> 其他管理</a>
-                        
+
 
                         <div id="collapseThree" class="panel-collapse collapse">
                             <ul class="nav nav-list menu-second">
@@ -106,28 +106,16 @@
                     <li class="active">系统管理 - 表格</li>
                 </ol>
                 <div class="input-group line left">
-                    <span class="input-group-addon" id="basic-addon2"></span>
-                    <input type="text" class="licasename" placeholder="用例名称" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
+                    <input type="text" class="form-control" id="searchcase" placeholder="标签或用例名称" aria-describedby="basic-addon2">
                 </div>
-                <div class="input-group line left">
-                    <span class="input-group-addon" id="basic-addon3"></span>
-                    <input type="text" class="litagname" placeholder="标签名" aria-describedby="basic-addon3">
-                </div>
-                <div class="input-group line left">
-                    <span class="input-group-addon" id="basic-addon4"></span>
-                    <input type="text" class="licreator" placeholder="创建人" aria-describedby="basic-addon4">
-                </div>
-                <div class="input-group line left">
-                    <span class="input-group-addon" id="basic-addon5"></span>
-                    <input type="text" class="lineedid" placeholder="需求id" aria-describedby="basic-addon5">
-                </div>
-                <select class=" line left" id="grade_ca" placeholder="风险">
+                <select class="form-control line left" id="taglevel">
                     <option></option>
                     <option>高</option>
                     <option>中</option>
                     <option>低</option>
                 </select>
-                <a class=" btn btn-primary "><span class="glyphicon glyphicon-search" onclick="getAjax4()" ></span></a>
+                <a class=" btn btn-primary" onclick="getAjax4()"><span class="glyphicon glyphicon-search"></span></a>
                 <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
                 <br><br>
                 <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
@@ -228,7 +216,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><table class="table table-bordered table-striped text-center bg-info">
+                        </div><table class="table table-bordered table-striped text-center bg-info" id="mytable">
                     <thead>
                     <tr class="info">
                         <th class="text-center">序号</th>
@@ -255,8 +243,6 @@
                                 {% endif %}
                             {% endfor %}
                         <td>
-{#                            <a class="btn btn-primary btn-sm" onclick="showDialog(this)" >添加</a>#}
-{#                            <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>#}
                             <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1" >添加</a>
                             <a class="btn btn-primary btn-sm" onclick="showDialog(this)">编辑</a>
                             <a class="btn btn-primary btn-sm" onclick="getid(this), getAjax3()">删除</a>
@@ -265,7 +251,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <ul class="pagination right">
+                <ul class="pagination right" id="myul">
                     <li><a href="http://127.0.0.1:8000/case/students/{{ pageNow|add:-1 }}/" aria-label="Previous"><span aria-hidden="true">«</span></a>
                     </li>
                     {% for page in pageNums %}
@@ -288,16 +274,6 @@
 </footer>
 
 <script>
-    /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测*/
-    (function () {
-        var s = document.createElement("script");
-        s.onload = function () {
-            bootlint.showLintReportForCurrentDocument([]);
-        };
-        s.src = "js/bootlint.js";
-        document.body.appendChild(s)
-    })();
-
     function showDialog(obj){
 	//点击更新按钮后展示模态框
 
@@ -373,35 +349,92 @@ function getAjax3() {
                    dataType:"json",
                    data: JSON.stringify({
                           "caseid":$(".id").val()
-
-
                    }),
 
                 });
 
        };
-function getAjax4() {
 
+String.prototype.format = function(args) {
+  if (arguments.length > 0) {
+    var result = this;
+    if (arguments.length == 1 && typeof(args) == "object") {
+      for (var key in args) {
+        var reg = new RegExp("({" + key + "})", "g");
+        result = result.replace(reg, args[key]);
+      }
+    } else {
+      for (var i = 0; i < arguments.length; i++) {
+        if (arguments[i] == undefined) {
+          return "";
+        } else {
+          var reg = new RegExp("({[" + i + "]})", "g");
+          result = result.replace(reg, arguments[i]);
+        }
+      }
+    }
+    return result;
+  } else {
+    return this;
+  }
+}
+
+function getAjax4(page=1) {
+       if($("#searchcase").val() == "" && $("#taglevel").val() == "")
+       {
+           alert("搜索条件为空！");
+           window.location.reload();
+       }
        $.ajax({
-                   url: '/case/search/{{ pageNow }}/',
+                   url: '/case/search/{0}/'.format(page),
                    type: 'post',
                    contentType: "application/json",
-                   dataType:"json",
                    data: JSON.stringify({
-                          "casename":$(".licasename").val(),
-                          "tagname":$(".litagname").val(),
-                          "creatorname":$(".licreator").val(),
-                          "needid":$(".lineedid").val(),
-                          "risklevel":$("#grade_ca").val()
-
-
+                          "searchcase":$("#searchcase").val(),
+                          "taglevel":$("#taglevel").val(),
                    }),
-
+                   success: function(data){
+                       var table = document.getElementById("mytable");
+                       var table_length = table.rows.length
+                       for(var i=1;i<table_length;++i)
+                       {
+                            table.deleteRow(1);
+                       }
+                       case_data = data["result"]
+                       for(var i=0;i<case_data.length;++i){
+                           table.insertRow(i+1)
+                           for(var j=0;j<case_data[i].length;++j)
+                           {
+                               text = document.createTextNode(case_data[i][j]);
+                               td = table.rows[i+1].insertCell(j)
+                               td.appendChild(text)
+                           }
+                           td = table.rows[i+1].insertCell(case_data[i].length)
+                           td.innerHTML = "<a class='btn btn-primary btn-sm' data-toggle='modal' data-target='#add1' >添加</a><a class='btn btn-primary btn-sm' onclick='showDialog(this)'>编辑</a><a class='btn btn-primary btn-sm' onclick='getid(this), getAjax3()'>删除</a>";
+                       }
+                       var myul = document.getElementById('myul');
+                       $("#myul").html('');
+                       var li=document.createElement("li");
+                       li.innerHTML="<a aria-label='Previous' onclick='getAjax4({0})'><span aria-hidden='true'>«</span></a>".format(data["pageNow"]-1)
+                       myul.appendChild(li)
+                       for(var i=1;i<=data["pageNums"];++i)
+                       {
+                           li=document.createElement("li");
+                           li.innerHTML = "<a onclick='getAjax4({0})'>{0}</a></li>".format(i)
+                           if(i == data["pageNow"])
+                           {
+                               li.className = "active";
+                           }
+                           myul.appendChild(li)
+                       }
+                       li=document.createElement("li");
+                       li.innerHTML="<a aria-label='Next' onclick='getAjax4({0})'><span aria-hidden='true'>»</span></a></li>".format(data["pageNow"]+1)
+                       myul.appendChild(li)
+                   },
                 });
-
+            return true;
        };
 </script>
-
 
 
 </body></html>

@@ -17,5 +17,5 @@ urlpatterns = [
     re_path('questions/(\d+)/', testcaseviews.questions),
     re_path('princpals/(\d+)/', testcaseviews.princpals),
     re_path('others/(\d+)/', testcaseviews.others),
-    re_path('search/(\d+)',testcaseviews.searchcase)
+    re_path('search/(\d+)/', testcaseviews.searchcase)
 ]

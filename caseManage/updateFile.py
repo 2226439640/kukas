@@ -51,7 +51,7 @@ class updateFile():
             if not os.path.exists(dirPath):
                 os.mkdir(dirPath)
             casefile.save(f"{dirPath}/测试用例.xlsx")
-            self._saveDB("测试用例.xlsx", f"{dirPath}/测试用例.xlsx", user_id)
+            self._saveDB("测试用例.xlsx", f"{dirPath}", user_id)
         else:
             file = xlrd.open_workbook(filename)
             self.cases = file.sheet_by_name(file.sheet_names()[0])

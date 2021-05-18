@@ -29,7 +29,7 @@ def delfileCase(request):
 def downFile(request):
     fid = request.GET.get('fileid')
     res = CaseFiles.objects.get(fid=fid)
-    file = open(res.filepath, "rb")
+    file = open(os.path.join(res.filepath, res.filename), "rb")
     response = FileResponse(file)
     response['Content-Type'] = 'application/octet-stream'
     from urllib import parse

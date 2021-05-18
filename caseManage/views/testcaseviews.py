@@ -4,6 +4,8 @@ from django.core import serializers
 from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage, EmptyPage
 import json
 from django.db import connection
+from django.http import JsonResponse
+
 
 def getAllCases(request):
 
@@ -140,27 +142,27 @@ def updateCase(request):
 
     return HttpResponse("修改成功")
 
+
 def delCase(request):
     data = json.loads(request.body.decode("utf-8"))
     StudentCases.objects.filter(caseid=data['caseid']).delete()
     return HttpResponse("删除成功")
 
-def searchcase(request,page):
+
+def searchcase(request, page):
     data = json.loads(request.body.decode("utf-8"))
-    case_name = data['casename']
-    tag_name = data['tagname']
-    creator_name = data['creatorname']
-    need_id = data['needid']
-    risk_level = data['risklevel']
-    print("casse----------",case_name,tag_name,creator_name,need_id,risk_level)
-    if case_name or tag_name or creator_name or need_id or risk_level:
-        sql = f"select * from studentcases where caseName like '%{case_name}%' and tag like '%{tag_name}%' and creatorname like '%{creator_name}%' and grade like '%{risk_level}%' and needid like '%{need_id}%';"
+    search_case = data['searchcase']
+    tag_level = data['taglevel']
+    if tag_level != "":
+        if search_case != "":
+            sql = f'select * from studentcases where (caseName={search_case} or tag={search_case}) and grade={tag_level};'
+        else:
+            sql = f'select * from studentcases where grade="{tag_level}";'
     else:
-        sql = f"select * from studentcases where caseName like '%{case_name}%' and tag like '%{tag_name}%' and creatorname like '%{creator_name}%' and grade like '%{risk_level}%' and needid like '%{need_id}%';"
+        sql = f'select * from studentcases where caseName={search_case} or tag={search_case};'
     with connection.cursor() as cursor:
         cursor.execute(sql)
         query = cursor.fetchall()
-        print("++++++++++",query)
     paginator = Paginator(query, 10)
     try:
         princpal = paginator.page(page)
@@ -170,5 +172,9 @@ def searchcase(request,page):
         return HttpResponse('找不到页面的内容')
     except EmptyPage:
         princpal = paginator.page(paginator.num_pages)
-    return render(request, 'student.html',{"students": princpal , "pageNums": range(1, paginator.num_pages+1), "pageNow": int(page)})
+    res = dict()
+    res["result"] = princpal.object_list
+    res["pageNums"] = paginator.num_pages
+    res["pageNow"] = int(page)
+    return JsonResponse(res, safe=False, json_dumps_params={'ensure_ascii': False})
 
