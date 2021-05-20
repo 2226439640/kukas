@@ -46,6 +46,7 @@ class updateFile():
                     else:
                         sheet.write(row+1, col, query[row][col])
                 sheet.write(row+1, col+1, 0)
+            sheet.first_visible_col = 1
             self.dateNow = datetime.now()
             dirPath = os.path.join('../upload', datetime.strftime(self.dateNow, "%Y%m%d-%H%M%S"))
             if not os.path.exists(dirPath):

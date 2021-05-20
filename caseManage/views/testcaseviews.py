@@ -1,11 +1,15 @@
+import json, os
 from django.shortcuts import render, HttpResponse
+from xlwt import Workbook
 from caseManage.models import *
 from django.core import serializers
 from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage, EmptyPage
-import json
 from django.db import connection
 from django.http import JsonResponse
+from threading import Thread, Lock
 
+
+mylock = Lock()
 
 def getAllCases(request):
 
@@ -177,4 +181,74 @@ def searchcase(request, page):
     res["pageNums"] = paginator.num_pages
     res["pageNow"] = int(page)
     return JsonResponse(res, safe=False, json_dumps_params={'ensure_ascii': False})
+
+
+def downcases(request):
+    search_case = request.GET.get('searchcase')
+    tag_level = request.GET.get('taglevel')
+    searchs = ""
+    if ',' in search_case:
+        for c in search_case.split(','):
+            searchs += f'find_in_set("{c}", tag) or '
+        searchs = searchs[:-4]
+    else:
+        searchs = f"find_in_set('{search_case}', tag)"
+    if tag_level != "":
+        if search_case != "":
+            sql = f'select * from studentcases where (caseName="{search_case}" or {searchs}) and grade="{tag_level}";'
+        else:
+            sql = f'select * from studentcases where grade="{tag_level}";'
+    else:
+        sql = f'select * from studentcases where caseName="{search_case}" or {searchs};'
+    with connection.cursor() as cursor:
+        cursor.execute(sql)
+        query = cursor.fetchall()
+    ws = Workbook(encoding='utf-8')
+
+    def saveFile(query):
+        mylock.acquire()
+        if query:
+            w = ws.add_sheet(u"用例列表")
+            w.write(0, 0, u"用例名称")
+            w.write(0, 1, u"前置条件")
+            w.write(0, 2, u"步骤")
+            w.write(0, 3, u"预期结果")
+            w.write(0, 4, u"需求id")
+            w.write(0, 5, u"标签")
+            w.write(0, 6, u"等级")
+            w.write(0, 7, u"创建人")
+            # 写入数据
+
+            excel_row = 1
+            for obj in query:
+                data_casename = obj[1]
+                data_casepre = obj[2]
+                data_casestep = obj[3]
+                data_caseresult = obj[4]
+                data_needid = obj[5]
+                data_tag = obj[6]
+                data_grade = obj[7]
+                data_creator = obj[9]
+                w.write(excel_row, 0, data_casename)
+                w.write(excel_row, 1, data_casepre)
+                w.write(excel_row, 2, data_casestep)
+                w.write(excel_row, 3, data_caseresult)
+                w.write(excel_row, 4, data_needid)
+                w.write(excel_row, 5, data_tag)
+                w.write(excel_row, 6, data_grade)
+                w.write(excel_row, 7, data_creator)
+                excel_row += 1
+
+    thread = Thread(target=saveFile, args=(query,))
+    thread.start()
+    thread.join()
+    ws.save("测试用例.xlsx")
+    with open("测试用例.xlsx", "rb") as fp:
+        response = HttpResponse(fp, content_type='application/vnd.ms-excel')
+        from urllib import parse
+        name = parse.quote("测试用例.xlsx")
+        response['Content-Disposition'] = f'attachment;filename={name}'
+        mylock.release()
+    os.remove("测试用例.xlsx")
+    return response
 

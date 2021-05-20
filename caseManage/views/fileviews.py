@@ -95,16 +95,30 @@ def synDB(filename, username, id):
     for row in range(1, update.cases.nrows):
         if update.cases.cell(row, update.cases.ncols-1).value == 1:
             case = StudentCases.objects.get(caseid=update.cases.cell(row, 0).value)
-            case.caseName = update.cases.cell(row, 1).value
-            case.casePre = update.cases.cell(row, 2).value
-            case.caseStep = update.cases.cell(row, 3).value
-            case.caseResult = update.cases.cell(row, 4).value
-            case.needid = update.cases.cell(row, 5).value
-            case.tag = update.cases.cell(row, 6).value
-            case.grade = update.cases.cell(row, 7).value
-            case.creatorname = username
-            case.user_id = id
-            case.save()
+            if case:
+                case.caseName = update.cases.cell(row, 1).value
+                case.casePre = update.cases.cell(row, 2).value
+                case.caseStep = update.cases.cell(row, 3).value
+                case.caseResult = update.cases.cell(row, 4).value
+                case.needid = update.cases.cell(row, 5).value
+                case.tag = update.cases.cell(row, 6).value
+                case.grade = update.cases.cell(row, 7).value
+                case.creatorname = username
+                case.user_id = id
+                case.save()
+            else:
+                caseNew = dict()
+                caseNew["caseName"] = update.cases.cell(row, 1).value
+                caseNew["casePre"] = update.cases.cell(row, 2).value
+                caseNew["caseStep"] = update.cases.cell(row, 3).value
+                caseNew["caseResult"] = update.cases.cell(row, 4).value
+                caseNew["needid"] = update.cases.cell(row, 5).value
+                caseNew["tag"] = update.cases.cell(row, 6).value
+                caseNew["grade"] = update.cases.cell(row, 7).value
+                caseNew["creatorname"] = username
+                caseNew["user_id"] = id
+                case = StudentCases.objects.create(**caseNew)
+                case.save()
 
 
 def upload(request):
@@ -141,5 +155,4 @@ def upload(request):
 
 
 if __name__ == '__main__':
-    t1 = Thread(target=download, args=('users',))
-    t1.start()
+    pass

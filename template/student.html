@@ -116,7 +116,7 @@
                     <option>低</option>
                 </select>
                 <a class=" btn btn-primary" onclick="getAjax4()"><span class="glyphicon glyphicon-search"></span></a>
-                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
+                <a class=" btn btn-primary " onclick="setArgs()" id="myurl"><span class="glyphicon glyphicon-download"></span></a>
                 <br><br>
                 <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
                             <div class="modal-dialog" role="document">
@@ -318,6 +318,8 @@ function getAjax() {
                    }),
                 });
                 $("#edit").modal('hide');
+                alert("更新成功!")
+                window.location.reload();
        };
 
 
@@ -338,6 +340,8 @@ function getAjax2() {
                    }),
                 });
        $("#add1").modal('hide');
+       alert("添加成功!")
+       window.location.reload();
        };
 
 function getAjax3() {
@@ -434,6 +438,17 @@ function getAjax4(page=1) {
                 });
             return true;
        };
+
+       function setArgs() {
+    if($("#searchcase").val() == "" && $("#taglevel").val() == "")
+       {
+           alert("搜索条件为空！");
+           return;
+       }
+       var url = "?searchcase={0}&taglevel={1}".format($("#searchcase").val(), $("#taglevel").val())
+        $("#myurl").attr('href', "/case/downcase/"+url)
+        console.log($("#myurl").attr('href'))
+    }
 </script>
 
 
