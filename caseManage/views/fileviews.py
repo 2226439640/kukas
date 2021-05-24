@@ -1,8 +1,8 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from caseManage.updateFile import updateFile
 from tools.forms import FileForm
 from caseManage.models import Users,CaseFiles, StudentCases
-from django.http import HttpResponse, HttpResponseRedirect, FileResponse
+from django.http import HttpResponse, HttpResponseRedirect, FileResponse, JsonResponse
 from django.contrib import messages
 from django.core import serializers
 from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage, EmptyPage
@@ -152,6 +152,33 @@ def upload(request):
         return HttpResponse('上传成功!')
     else:
         return render(request, "upload.html")
+
+
+def searchfile(request, page):
+    data = json.loads(request.body.decode("utf-8"))
+    search_file = data['searchcase']
+    if search_file != "":
+        sql = f'select c.fid, c.filename, c.endupdate, u.`name` from casefiles AS c, users AS u where c.user_id = u.uid and filename="{search_file}.xlsx"'
+    else:
+        sql = f'select c.fid, c.filename, c.endupdate, u.`name` from casefiles AS c, users AS u where c.user_id = u.uid and filename="{search_file}.xlsx"'
+    with connection.cursor() as cursor:
+        print(sql)
+        cursor.execute(sql)
+        query = cursor.fetchall()
+    paginator = Paginator(query, 10)
+    try:
+        princpal = paginator.page(page)
+    except PageNotAnInteger:
+        princpal = paginator.page(1)
+    except InvalidPage:
+        return HttpResponse('找不到页面的内容')
+    except EmptyPage:
+        princpal = paginator.page(paginator.num_pages)
+    res = dict()
+    res["result"] = princpal.object_list
+    res["pageNums"] = paginator.num_pages
+    res["pageNow"] = int(page)
+    return JsonResponse(res, safe=False, json_dumps_params={'ensure_ascii': False})
 
 
 if __name__ == '__main__':

@@ -11,6 +11,7 @@ urlpatterns = [
     path('delfilecase/', fileviews.delfileCase, name='delfileCase'),
     path('downfile/', fileviews.downFile, name='downFile'),
     path('downcase/', testcaseviews.downcases, name='downcases'),
+    re_path('searchfile/(\d+)/',fileviews.searchfile),
     re_path('fileall/(\d+)/', fileviews.getAllFiles),
     re_path('students/(\d+)/', testcaseviews.students),
     re_path('teachers/(\d+)/', testcaseviews.teachers),

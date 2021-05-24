@@ -104,23 +104,15 @@
                 </ol>
                 <div class="input-group line left">
                     <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" class="form-control" placeholder="输入关键字搜索" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control" placeholder="输入文件名搜索" aria-describedby="basic-addon2" id="sefile">
                 </div>
                 <form method="post" enctype="multipart/form-data" action="/file/upload/">
                     <input id="lefile" type="file" class="input-group-addon line right" name="file">
                     <button type="submit" class="btn btn-primary line right">确定上传</button>
                 </form>
-                <select class="form-control line left">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
-                <a href="http://demo.kangjingept.com:8020/cssthemes6/1.18ZF07/p1.html#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
+                <a class=" btn btn-primary " onclick="getAjax6()"><span class="glyphicon glyphicon-search"></span></a>
                 <br><br>
-                <table class="table table-bordered table-striped text-center bg-info">
+                <table class="table table-bordered table-striped text-center bg-info" id="filetable">
                     <thead>
                     <tr class="info">
                         <th class="text-center">序号</th>
@@ -147,7 +139,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <ul class="pagination right">
+                <ul class="pagination right" id="myfi">
                     <li><a href="/file/fileall/{{ pageNow|add:-1 }}/" aria-label="Previous"><span aria-hidden="true">«</span></a>
                     </li>
                     {% for page in pageNums %}
@@ -172,15 +164,81 @@
 <script src="static/js/jquery-1.11.3.js"></script>
 <script src="static/js/bootstrap.js"></script>
 <script>
-    /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测*/
-    (function () {
-        var s = document.createElement("script");
-        s.onload = function () {
-            bootlint.showLintReportForCurrentDocument([]);
-        };
-        s.src = "js/bootlint.js";
-        document.body.appendChild(s)
-    })();)
+String.prototype.format = function(args) {
+  if (arguments.length > 0) {
+    var result = this;
+    if (arguments.length == 1 && typeof(args) == "object") {
+      for (var key in args) {
+        var reg = new RegExp("({" + key + "})", "g");
+        result = result.replace(reg, args[key]);
+      }
+    } else {
+      for (var i = 0; i < arguments.length; i++) {
+        if (arguments[i] == undefined) {
+          return "";
+        } else {
+          var reg = new RegExp("({[" + i + "]})", "g");
+          result = result.replace(reg, arguments[i]);
+        }
+      }
+    }
+    return result;
+  } else {
+    return this;
+  }
+}
+
+    function getAjax6(page=1) {
+    if($("#sefile").val() == "")
+    {
+        alert("搜索条件为空！");
+        window.location.reload();}
+    $.ajax({
+        url: '/file/searchfile/{0}/'.format(page),
+        type: 'post',
+        contentType: "application/json",
+        data: JSON.stringify({
+            "searchcase": $("#sefile").val(),
+        }),
+        success: function(data) {
+            var table = document.getElementById("filetable");
+            var table_length = table.rows.length
+            for(var i=1;i<table_length;++i)
+            {table.deleteRow(1);}
+            file_data = data["result"]
+            for(var i=0;i<file_data.length;++i){
+                           table.insertRow(i+1)
+                           for(var j=0;j<file_data[i].length;++j)
+                           {
+                               text = document.createTextNode(file_data[i][j]);
+                               td = table.rows[i+1].insertCell(j)
+                               td.appendChild(text)
+                           }
+                           td = table.rows[i+1].insertCell(file_data[i].length)
+                           td.innerHTML = "<a href='/file/delfilecase/?fileid={0}' class='btn btn-primary btn-sm'>删除</a><a href='/file/downfile/?fileid={0}' class='btn btn-primary btn-sm'>下载</a>".format(file_data[i][0]);
+                       }
+            var myfi = document.getElementById('myfi');
+            $("#myfi").html('');
+            var li=document.createElement("li");
+            li.innerHTML="<a aria-label='Previous' onclick='getAjax6({0})'><span aria-hidden='true'>«</span></a>".format(data["pageNow"]-1)
+            myfi.appendChild(li)
+            for(var i=1;i<=data["pageNums"];++i)
+            {
+                li=document.createElement("li");
+                li.innerHTML = "<a onclick='getAjax6({0})'>{0}</a></li>".format(i)
+                if(i == data["pageNow"])
+                {
+                    li.className = "active";
+                }
+                myfi.appendChild(li)
+            }
+            li=document.createElement("li");
+            li.innerHTML="<a aria-label='Next' onclick='getAjax6({0})'><span aria-hidden='true'>»</span></a></li>".format(data["pageNow"]+1)
+            myfi.appendChild(li)
+        }
+    });
+return true;
+};
 
 </script><script src="/static/js/bootlint.js"></script>
 
